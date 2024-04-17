@@ -1,8 +1,8 @@
-export default function Home() {
+export default function About() {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-90vh py-20 px-12">
 			<h1 className="text-6xl font-bold">
-				Welcome to <a href="https://nextjs.org">Next.js!</a>
+				Welcome to <a href="https://nextjs.org">Next.js! ABOUT</a>
 			</h1>
 
 			<p className="mt-3 text-2xl">
