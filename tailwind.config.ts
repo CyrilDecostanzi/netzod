@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
+	mode: "jit",
 	content: [
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/containers/**/*.{js,ts,jsx,tsx,mdx}",
@@ -66,6 +67,9 @@ const config: Config = {
 			},
 			fontFamily: {
 				sans: ["var(--font-sans)", ...fontFamily.sans]
+			},
+			backgroundImage: {
+				"hero": "url('/assets/hero_bg.jpg')"
 			}
 		}
 	},

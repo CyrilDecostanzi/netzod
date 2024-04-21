@@ -1,11 +1,14 @@
 import { HeroBanner } from "@/containers/Home/HeroBanner";
 import { Content } from "@/containers/Home/Content";
 
-export default function Dashboard() {
+export default function Home() {
 	return (
-		<div className="flex min-h-screen w-full flex-col">
-			<main className="flex flex-col gap-4 p-4 md:gap-8 md:px-24">
-				<HeroBanner />
+		<div className="flex min-h-screen w-full lg:max-w-[1300px] mx-auto flex-col">
+			<main className="flex flex-col gap-4 px-8 md:gap-8 md:px-18">
+				<HeroBanner
+					title='"Codez comme si la personne qui devra maintenir votre code est un psychopathe violent qui sait où vous vivez." - Jeff Atwood'
+					description="Et le pire c'est que parfois ça peut être le cas, surtout si vous maintenez votre propre code..."
+				/>
 				<Content />
 			</main>
 		</div>

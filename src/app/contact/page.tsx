@@ -1,12 +1,12 @@
 import { HeroBanner } from "@/containers/Home/HeroBanner";
 
-export default function About() {
+export default function Contact() {
 	return (
 		<div className="flex min-h-screen w-full lg:max-w-[1300px] mx-auto flex-col">
 			<main className="flex flex-col gap-4 px-8 md:gap-8 md:px-18">
 				<HeroBanner
-					title="A propos de moi"
-					description="Je suis un développeur web full-stack passionné par le développement d'applications web modernes."
+					title="Contactez-moi"
+					description="Vous avez une question, une suggestion, ou vous voulez simplement dire bonjour ? N'hésitez pas à me contacter !"
 				/>
 			</main>
 		</div>
