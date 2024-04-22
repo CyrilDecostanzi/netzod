@@ -14,8 +14,12 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ToggleTheme } from "@/components/ToggleTheme";
 import { Icons } from "@/components/icons";
+import { Auth } from "@/containers/Auth";
+import { getData } from "@/lib/actions/getData";
+import { removeCookie } from "@/lib/actions/cookies";
+import { LogoutButton } from "../Auth/LogoutButton";
 
-function LinkList() {
+async function LinkList() {
 	return (
 		<>
 			<Link href="/" className="flex items-center gap-2 text-lg font-semibold md:text-base">
@@ -41,7 +45,11 @@ function LinkList() {
 	);
 }
 
-export function Header() {
+export async function Header() {
+	const { data, loading, error } = await getData("auth/profile");
+
+	console.log(data, "response");
+
 	return (
 		<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 z-50">
 			<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
@@ -69,24 +77,29 @@ export function Header() {
 						<Input type="search" placeholder="Search products..." className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]" />
 					</div> */}
 				</form>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="secondary" size="icon" className="rounded-full">
-							<CircleUser className="h-5 w-5" />
-							<span className="sr-only">Toggle user menu</span>
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>
-							<Link href="/profile">Account</Link>
-						</DropdownMenuLabel>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>Settings</DropdownMenuItem>
-						<DropdownMenuItem>Support</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>Logout</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
+				{data?.id ? (
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button variant="secondary" size="icon" className="rounded-full">
+								<CircleUser className="h-5 w-5" />
+								<span className="sr-only">Toggle user menu</span>
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end">
+							<DropdownMenuLabel>
+								<Link href="/profile">Account</Link>
+							</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem>Settings</DropdownMenuItem>
+							<DropdownMenuItem>Support</DropdownMenuItem>
+							<DropdownMenuSeparator />
+							{/* <DropdownMenuItem>Logout</DropdownMenuItem> */}
+							<LogoutButton />
+						</DropdownMenuContent>
+					</DropdownMenu>
+				) : (
+					<Auth />
+				)}
 			</div>
 		</header>
 	);
