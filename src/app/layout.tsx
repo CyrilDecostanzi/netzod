@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+
 import "./styles/globals.css";
 
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/containers/Layout/Header";
 import { Footer } from "@/containers/Layout/Footer";
+import { Providers } from "./providers";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -27,13 +27,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-				<ThemeProvider attribute="class" enableSystem disableTransitionOnChange defaultTheme="dark">
-					<TooltipProvider>
-						<Header />
-						{children}
-						<Footer />
-					</TooltipProvider>
-				</ThemeProvider>
+				<Providers>
+					<Header />
+					{children}
+					<Footer />
+				</Providers>
 			</body>
 		</html>
 	);

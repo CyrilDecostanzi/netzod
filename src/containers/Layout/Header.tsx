@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { CircleUser, Menu, Search } from "lucide-react";
 
@@ -16,10 +18,11 @@ import { ToggleTheme } from "@/components/ToggleTheme";
 import { Icons } from "@/components/icons";
 import { Auth } from "@/containers/Auth";
 import { getData } from "@/lib/actions/getData";
-import { removeCookie } from "@/lib/actions/cookies";
 import { LogoutButton } from "../Auth/LogoutButton";
+import { useUser } from "@/hooks/useUser";
+import { useSearchParams } from "next/navigation";
 
-async function LinkList() {
+function LinkList() {
 	return (
 		<>
 			<Link href="/" className="flex items-center gap-2 text-lg font-semibold md:text-base">
@@ -45,10 +48,11 @@ async function LinkList() {
 	);
 }
 
-export async function Header() {
-	const { data, loading, error } = await getData("auth/profile");
+export function Header() {
+	const { user } = useUser();
 
-	console.log(data, "response");
+	const searchParams = useSearchParams();
+	const type = searchParams.get("type");
 
 	return (
 		<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 z-50">
@@ -77,7 +81,7 @@ export async function Header() {
 						<Input type="search" placeholder="Search products..." className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]" />
 					</div> */}
 				</form>
-				{data?.id ? (
+				{user ? (
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="secondary" size="icon" className="rounded-full">
@@ -87,18 +91,17 @@ export async function Header() {
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="end">
 							<DropdownMenuLabel>
-								<Link href="/profile">Account</Link>
+								<Link href="/profile">{user.firstname}</Link>
 							</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem>Settings</DropdownMenuItem>
 							<DropdownMenuItem>Support</DropdownMenuItem>
 							<DropdownMenuSeparator />
-							{/* <DropdownMenuItem>Logout</DropdownMenuItem> */}
 							<LogoutButton />
 						</DropdownMenuContent>
 					</DropdownMenu>
 				) : (
-					<Auth />
+					<Auth type={type} />
 				)}
 			</div>
 		</header>

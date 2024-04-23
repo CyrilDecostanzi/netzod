@@ -1,34 +1,56 @@
-"use client";
+"use server";
 
-import { api } from "../utils";
 import { cookies } from "next/headers";
-
+import { api } from "../utils";
+import { HTTPError } from "ky";
+// ####################################################
+// ################## TYPES ###########################
+// ####################################################
 interface ApiResponse {
 	data: any;
 	loading: boolean;
 	error: any;
 }
 
+// ####################################################
+// ################## FUNCTIONS #######################
+// ####################################################
+
 export async function postData(url: string, payload: object): Promise<ApiResponse> {
-	// Initialisation de l'état de chargement
 	const response: ApiResponse = {
 		data: null,
 		loading: true,
 		error: null
 	};
 
-	// Revalidation de la page
-	// revalidatePath(process.env.NEXT_PUBLIC_API_URL + url, "layout");
+	const token = cookies().get("token")?.value;
 
 	try {
-		// Tentative de récupération des données
-		const data = await api.post(url, { json: payload }).json<any>();
-		// Mise à jour de l'état
+		const data = await api
+			.post(url, {
+				json: payload,
+				headers: {
+					"Content-Type": "application/json",
+					"Auhtorization": `Bearer ${token}`
+				}
+			})
+			.json<any>();
 		response.data = data;
 		response.loading = false;
-	} catch (error) {
-		response.error = error;
+	} catch (error: any) {
 		response.loading = false;
+		if (error instanceof HTTPError) {
+			// Try to retrieve the response body that contains the JSON error message
+			try {
+				const errorBody = await error.response.json();
+				response.error = errorBody || { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
+			} catch (parseError) {
+				response.error = { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
+			}
+		} else {
+			// For other non-HTTP error types, such as network errors, etc.
+			response.error = error.message;
+		}
 	}
 
 	return response;

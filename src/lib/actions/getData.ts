@@ -2,15 +2,10 @@
 
 import { cookies } from "next/headers";
 import { api } from "../utils";
-import { getCookie } from "./cookies";
+import { HTTPError } from "ky";
+import { ApiResponse } from "@/lib/types/api";
 
-interface ApiResponse {
-	data: any;
-	loading: boolean;
-	error: any;
-}
-
-export async function getData(url: string): Promise<ApiResponse> {
+export async function getData(url: string, revalidate: number = 0): Promise<ApiResponse> {
 	// Initialisation de l'état de chargement
 	const response: ApiResponse = {
 		data: null,
@@ -19,28 +14,40 @@ export async function getData(url: string): Promise<ApiResponse> {
 	};
 
 	// get token from cookie
-	const cookie = cookies().get("token")?.value;
+	const token = cookies().get("token")?.value;
 
 	try {
 		// Tentative de récupération des données
 		const data = await api
 			.get(url, {
 				next: {
-					revalidate: 0
+					revalidate: revalidate
 				},
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": `Bearer ${cookie}`
+					"Authorization": `Bearer ${token}`
 				}
 			})
 			.json<any>();
-		// Mise à jour de l'état
+
 		response.data = data;
 		response.loading = false;
-	} catch (error) {
-		// Gestion des erreurs
-		response.error = error;
+	} catch (error: any) {
 		response.loading = false;
+		// if the error status is 401, we need to logout the user
+
+		if (error instanceof HTTPError) {
+			// Try to retrieve the response body that contains the JSON error message
+			try {
+				const errorBody = await error.response.json();
+				response.error = errorBody || { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
+			} catch (parseError) {
+				response.error = { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
+			}
+		} else {
+			// For other non-HTTP error types, such as network errors, etc.
+			response.error = error.message;
+		}
 	}
 
 	return response;

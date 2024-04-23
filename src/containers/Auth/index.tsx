@@ -2,17 +2,26 @@
 "use client";
 
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger } from "@/components/ui/drawer";
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 
-export function Auth() {
+export function Auth(type: any) {
 	const [open, setOpen] = useState(false);
 	const [haveAccount, setHaveAccount] = useState(true);
 	const isDesktop = useMediaQuery("(min-width: 728px)");
+
+	const { type: authType } = type;
+	useEffect(() => {
+		if (authType === "redirect") {
+			setOpen(true);
+			//remove the query param
+			window.history.replaceState({}, document.title, window.location.pathname);
+		}
+	}, [authType]);
 
 	if (isDesktop) {
 		return (
@@ -21,7 +30,7 @@ export function Auth() {
 					<Button variant="outline">Connexion</Button>
 				</DialogTrigger>
 				<DialogContent className="sm:max-w-[425px]">
-					{!haveAccount ? <RegisterForm /> : <LoginForm />}
+					{!haveAccount ? <RegisterForm /> : <LoginForm open={open} setOpen={setOpen} />}
 					<Button variant="outline" className="mt-4 w-ful mx-auto" onClick={() => setHaveAccount(!haveAccount)}>
 						{haveAccount ? "Pas encore de compte ? Inscrivez-vous" : "Déjà un compte ? Connectez-vous"}
 					</Button>
@@ -36,7 +45,7 @@ export function Auth() {
 				<Button variant="outline">Connexion</Button>
 			</DrawerTrigger>
 			<DrawerContent>
-				{!haveAccount ? <RegisterForm /> : <LoginForm />}
+				{!haveAccount ? <RegisterForm /> : <LoginForm open={open} setOpen={setOpen} />}
 				<DrawerFooter className="pt-2 mx-auto">
 					<Button variant="outline" className="mt-4 w-full" onClick={() => setHaveAccount(!haveAccount)}>
 						{haveAccount ? "Pas encore de compte ? Inscrivez-vous" : "Déjà un compte ? Connectez-vous"}
