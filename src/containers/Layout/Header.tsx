@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { CircleUser, Menu, Search } from "lucide-react";
+import { CircleUser, Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,12 +13,10 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ToggleTheme } from "@/components/ToggleTheme";
 import { Icons } from "@/components/icons";
 import { Auth } from "@/containers/Auth";
-import { getData } from "@/lib/actions/getData";
 import { LogoutButton } from "../Auth/LogoutButton";
 import { useUser } from "@/hooks/useUser";
 import { useSearchParams } from "next/navigation";
@@ -49,10 +48,20 @@ function LinkList() {
 }
 
 export function Header() {
-	const { user } = useUser();
+	const { user, removeUser } = useUser();
 
 	const searchParams = useSearchParams();
 	const type = searchParams.get("type");
+
+	useEffect(() => {
+		if (type === "login") {
+			removeUser();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [type]);
+
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
 
 	return (
 		<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 z-50">
@@ -75,34 +84,31 @@ export function Header() {
 				</SheetContent>
 			</Sheet>
 			<div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-				<form className="ml-auto flex-1 sm:flex-initial">
-					{/* <div className="relative">
-						<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-						<Input type="search" placeholder="Search products..." className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]" />
-					</div> */}
-				</form>
-				{user ? (
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button variant="secondary" size="icon" className="rounded-full">
-								<CircleUser className="h-5 w-5" />
-								<span className="sr-only">Toggle user menu</span>
-							</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="end">
-							<DropdownMenuLabel>
-								<Link href="/profile">{user.firstname}</Link>
-							</DropdownMenuLabel>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem>Settings</DropdownMenuItem>
-							<DropdownMenuItem>Support</DropdownMenuItem>
-							<DropdownMenuSeparator />
-							<LogoutButton />
-						</DropdownMenuContent>
-					</DropdownMenu>
-				) : (
-					<Auth type={type} />
-				)}
+				<form className="ml-auto flex-1 sm:flex-initial"></form>
+				{mounted ? (
+					user ? (
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button variant="secondary" size="icon" className="rounded-full">
+									<CircleUser className="h-5 w-5" />
+									<span className="sr-only">Toggle user menu</span>
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="end">
+								<DropdownMenuLabel>
+									<Link href="/account/profile">{user.firstname}</Link>
+								</DropdownMenuLabel>
+								<DropdownMenuSeparator />
+								<DropdownMenuItem>Settings</DropdownMenuItem>
+								<DropdownMenuItem>Support</DropdownMenuItem>
+								<DropdownMenuSeparator />
+								<LogoutButton />
+							</DropdownMenuContent>
+						</DropdownMenu>
+					) : (
+						<Auth type={type} />
+					)
+				) : null}
 			</div>
 		</header>
 	);

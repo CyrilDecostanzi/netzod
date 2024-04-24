@@ -1,26 +1,13 @@
 import { useUser } from "@/hooks/useUser";
 import { LoginFormData, LoginResponse } from "@/lib/types/auth";
-import useCookie from "@/hooks/useCookie";
 import { postData } from "@/lib/actions/postData";
 import { useRouter } from "next/navigation";
+import useCookie from "@/hooks/useCookie";
 
 export const useAuth = () => {
 	const { user, addUser, removeUser } = useUser();
+	const { setCookie } = useCookie();
 	const router = useRouter();
-
-	const { getCookie } = useCookie();
-
-	const refresh = () => {
-		let existingUser = null;
-		const getFromCookie = async () => (existingUser = getCookie("user"));
-		getFromCookie();
-
-		if (existingUser) {
-			addUser(JSON.parse(existingUser));
-		} else {
-			removeUser();
-		}
-	};
 
 	const register = async (creds: any) => {
 		// TODO: Implement register function
@@ -31,6 +18,7 @@ export const useAuth = () => {
 
 		if (data && !error) {
 			addUser(data);
+			setCookie("lastFetchTime", Date.now().toString());
 		}
 
 		return { data, error, loading };
@@ -42,5 +30,5 @@ export const useAuth = () => {
 		router.push("/");
 	};
 
-	return { user, login, register, logout, refresh };
+	return { user, login, register, logout };
 };

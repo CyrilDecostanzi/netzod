@@ -15,11 +15,10 @@ export function Auth(type: any) {
 	const isDesktop = useMediaQuery("(min-width: 728px)");
 
 	const { type: authType } = type;
+
 	useEffect(() => {
-		if (authType === "redirect") {
+		if (authType === "login") {
 			setOpen(true);
-			//remove the query param
-			window.history.replaceState({}, document.title, window.location.pathname);
 		}
 	}, [authType]);
 
@@ -29,7 +28,15 @@ export function Auth(type: any) {
 				<DialogTrigger asChild>
 					<Button variant="outline">Connexion</Button>
 				</DialogTrigger>
-				<DialogContent className="sm:max-w-[425px]">
+				<DialogContent
+					className="sm:max-w-[425px]"
+					// onInteractOutside={(e) => {
+					// 	if (authType === "login") {
+					// 		e.preventDefault();
+					// 	}
+					// }}
+					// canBeClosed={authType !== "login"}
+				>
 					{!haveAccount ? <RegisterForm /> : <LoginForm open={open} setOpen={setOpen} />}
 					<Button variant="outline" className="mt-4 w-ful mx-auto" onClick={() => setHaveAccount(!haveAccount)}>
 						{haveAccount ? "Pas encore de compte ? Inscrivez-vous" : "Déjà un compte ? Connectez-vous"}

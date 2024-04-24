@@ -11,7 +11,6 @@ export function Content() {
 	return (
 		<>
 			<div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4 w-full">
-				{/* Fallback is a loop of 4 card with skeleton */}
 				<Suspense fallback={<CardListSkeleton />}>
 					<CardList />
 				</Suspense>

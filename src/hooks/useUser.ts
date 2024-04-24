@@ -10,11 +10,15 @@ export const useUser = () => {
 	const addUser = (user: AuthUser) => {
 		setUser(user.user);
 		setCookie("token", user.access_token);
+		setCookie("user", JSON.stringify(user.user));
+		setCookie("lastFetchTime", Date.now().toString());
 	};
 
 	const removeUser = () => {
 		setUser(null);
 		removeCookie("token");
+		removeCookie("user");
+		removeCookie("lastFetchTime");
 	};
 
 	return { user, addUser, removeUser };

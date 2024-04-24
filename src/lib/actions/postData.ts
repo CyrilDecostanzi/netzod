@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { api } from "../utils";
+import { api } from "@/lib/api";
 import { HTTPError } from "ky";
 // ####################################################
 // ################## TYPES ###########################

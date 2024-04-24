@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // #################################################
 // #################### TYPES ######################
@@ -29,7 +31,9 @@ type LoginFormProps = {
 export function LoginForm({ open, setOpen }: LoginFormProps) {
 	const [formData, setFormData] = useState<FormDataType>({ email: "", password: "" });
 	const [error, setError] = useState<ErrorType>(null);
+	const searchParams = useSearchParams();
 	const { login } = useAuth();
+	const router = useRouter();
 
 	function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setError(null);
@@ -46,6 +50,8 @@ export function LoginForm({ open, setOpen }: LoginFormProps) {
 		}
 
 		if (data) {
+			const next = searchParams.get("next");
+			if (next) router.push(next);
 			setOpen(!open);
 		}
 	}
