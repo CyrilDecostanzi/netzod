@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { HeroBanner } from "@/containers/Home/HeroBanner";
 import Detail from "@/containers/Profile/Detail";
 import { Suspense } from "react";
@@ -10,7 +11,7 @@ export default function Profile() {
 					title="Apprenez quelque chose de nouveau chaque jour"
 					description="Des tutoriels, des articles, des astuces, et des conseils pour vous aider à devenir un meilleur développeur web."
 				/>
-				<Suspense fallback={<div>Chargement...</div>}>
+				<Suspense fallback={<Skeleton className="w-full h-30" />}>
 					<Detail />
 				</Suspense>
 			</main>

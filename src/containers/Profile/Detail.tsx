@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useUser } from "@/hooks/useUser";
 
 export default function Detail() {
@@ -16,7 +17,7 @@ export default function Detail() {
 						<div>Email: {user.email}</div>
 					</div>
 				) : (
-					<div>Chargement...</div>
+					<Skeleton className="w-full h-20" />
 				)}
 			</CardContent>
 		</Card>

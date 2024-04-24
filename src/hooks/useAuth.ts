@@ -9,10 +9,22 @@ export const useAuth = () => {
 	const { setCookie } = useCookie();
 	const router = useRouter();
 
+	/**
+	 * Register a new user with provided credentials.
+	 * TODO: Implement the actual registration logic.
+	 *
+	 * @param creds - The credentials for registration, currently of any type but should be defined.
+	 */
 	const register = async (creds: any) => {
-		// TODO: Implement register function
+		// Implementation needed here.
 	};
 
+	/**
+	 * Authenticate a user with provided login credentials.
+	 *
+	 * @param creds - The login credentials.
+	 * @returns An object containing the response data, error status, and loading state.
+	 */
 	const login = async (creds: LoginFormData): Promise<LoginResponse> => {
 		const { data, error, loading } = await postData("auth/login", creds);
 
@@ -24,9 +36,11 @@ export const useAuth = () => {
 		return { data, error, loading };
 	};
 
+	/**
+	 * Log out the current user and redirect to the homepage.
+	 */
 	const logout = () => {
 		removeUser();
-		// redirect to home
 		router.push("/");
 	};
 

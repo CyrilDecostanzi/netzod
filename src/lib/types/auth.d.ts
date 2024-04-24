@@ -8,6 +8,7 @@ export type User = {
 	username: string;
 	email: string;
 	mobile: string;
+	role_id: string;
 	firstname: string;
 	lastname: string;
 	avatar: string;

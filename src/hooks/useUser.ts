@@ -9,16 +9,18 @@ export const useUser = () => {
 
 	const addUser = (user: AuthUser) => {
 		setUser(user.user);
-		setCookie("token", user.access_token);
-		setCookie("user", JSON.stringify(user.user));
-		setCookie("lastFetchTime", Date.now().toString());
+		const cookiesToSet = [
+			{ key: "token", value: user.access_token },
+			{ key: "user", value: JSON.stringify(user.user) },
+			{ key: "lastFetchTime", value: Date.now().toString() }
+		];
+		cookiesToSet.forEach((cookie) => setCookie(cookie.key, cookie.value));
 	};
 
 	const removeUser = () => {
 		setUser(null);
-		removeCookie("token");
-		removeCookie("user");
-		removeCookie("lastFetchTime");
+		const cookiesToRemove = ["token", "user", "lastFetchTime"];
+		cookiesToRemove.forEach((cookie) => removeCookie(cookie));
 	};
 
 	return { user, addUser, removeUser };
