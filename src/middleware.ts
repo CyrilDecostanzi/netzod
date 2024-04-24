@@ -38,8 +38,6 @@ export default async function middleware(req: NextRequest) {
 	const url = new URL("/?type=login&next=" + req.nextUrl.pathname, req.nextUrl.origin);
 
 	if (!user && requiresAuth) {
-		console.log(req.nextUrl.pathname, "requires authentication.");
-
 		const response = NextResponse.redirect(url.toString());
 		deleteCookies(response);
 		return response;

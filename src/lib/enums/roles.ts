@@ -6,4 +6,4 @@ export enum Role {
 	ADMIN = 3
 }
 
-export const isAdmin = (role: number) => role === Role.USER;
+export const isAdmin = (role: number) => role === Role.ADMIN;
