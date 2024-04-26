@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { GraduationCapIcon } from "lucide-react";
 
 // #################################################
 // #################### TYPES ######################
@@ -38,18 +40,19 @@ export function LoginForm({ open, setOpen }: LoginFormProps) {
 	function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setError(null);
 		const { name, value } = event.target;
-
 		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 	}
 
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 		const { data, error } = await login(formData);
+
 		if (error) {
 			setError(error);
 		}
 
 		if (data) {
+			toast.success("Connexion réussie");
 			const next = searchParams.get("next");
 			if (next) router.push(next);
 			setOpen(!open);
@@ -106,6 +109,7 @@ export function LoginForm({ open, setOpen }: LoginFormProps) {
 							Login
 						</Button>
 						<Button variant="outline" className="w-full">
+							<GraduationCapIcon className="w-4 h-4 mr-2" />
 							Login with Google
 						</Button>
 					</div>

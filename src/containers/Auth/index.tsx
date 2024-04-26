@@ -20,6 +20,10 @@ export function Auth(type: any) {
 		if (authType === "login") {
 			setOpen(true);
 		}
+		// cleanup
+		return () => {
+			setOpen(false);
+		};
 	}, [authType]);
 
 	if (isDesktop) {
@@ -28,15 +32,7 @@ export function Auth(type: any) {
 				<DialogTrigger asChild>
 					<Button variant="outline">Connexion</Button>
 				</DialogTrigger>
-				<DialogContent
-					className="sm:max-w-[425px]"
-					// onInteractOutside={(e) => {
-					// 	if (authType === "login") {
-					// 		e.preventDefault();
-					// 	}
-					// }}
-					// canBeClosed={authType !== "login"}
-				>
+				<DialogContent className="sm:max-w-[425px]">
 					{!haveAccount ? <RegisterForm /> : <LoginForm open={open} setOpen={setOpen} />}
 					<Button variant="outline" className="mt-4 w-ful mx-auto" onClick={() => setHaveAccount(!haveAccount)}>
 						{haveAccount ? "Pas encore de compte ? Inscrivez-vous" : "Déjà un compte ? Connectez-vous"}

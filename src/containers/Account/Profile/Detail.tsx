@@ -17,7 +17,7 @@ export default function Detail() {
 						<div>Email: {user.email}</div>
 					</div>
 				) : (
-					<Skeleton className="w-full h-20" />
+					<Skeleton className="h-12" />
 				)}
 			</CardContent>
 		</Card>

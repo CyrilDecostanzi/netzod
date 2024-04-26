@@ -8,6 +8,8 @@ import { CardListSkeleton } from "./CardListSkeleton";
 export async function CardList() {
 	const { error, data } = await getData("posts/featured/cardlist");
 
+	console.log(data);
+
 	if (data && data.length === 0) {
 		return (
 			<Alert className="items-center space-x-2 md:w-[700px] mx-auto">

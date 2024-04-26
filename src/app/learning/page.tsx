@@ -1,4 +1,4 @@
-import { HeroBanner } from "@/containers/Home/HeroBanner";
+import { HeroBanner } from "@/components/HeroBanner";
 
 export default function Learning() {
 	return (
