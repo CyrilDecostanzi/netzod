@@ -5,7 +5,7 @@ const config: Config = {
 	mode: "jit",
 	content: [
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/containers/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/features/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 		"./@/**/*.{ts,tsx}"
 	],
@@ -69,7 +69,8 @@ const config: Config = {
 				sans: ["var(--font-sans)", ...fontFamily.sans]
 			},
 			backgroundImage: {
-				"hero": "url('/assets/hero_bg.jpg')"
+				"hero": "url('/assets/hero_bg.jpg')",
+				"gradient-hero": "linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%)"
 			}
 		}
 	},

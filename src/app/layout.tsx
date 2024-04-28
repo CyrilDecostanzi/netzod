@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 
 import "../styles/globals.css";
 
-import { Inter as FontSans } from "next/font/google";
+import { Baloo_2 as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { Header } from "@/containers/Layout/Header";
-import { Footer } from "@/containers/Layout/Footer";
+import { Header } from "@/features/Layout/Header";
+import { Footer } from "@/features/Layout/Footer";
 import { Providers } from "./providers";
 
 const fontSans = FontSans({
@@ -26,10 +26,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
+			<body className={cn("min-h-screen bg-background font-sans antialiased bg-gradient-to-b from-background to-secondary", fontSans.variable)}>
 				<Providers>
 					<Header />
-					{children}
+					<div className="flex min-h-screen w-full lg:max-w-[1300px] mx-auto flex-col">
+						<main className="flex flex-col gap-4 px-8 md:gap-8 md:px-18">{children}</main>
+					</div>
 					<Footer />
 				</Providers>
 			</body>

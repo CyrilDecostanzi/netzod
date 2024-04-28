@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { getJwt } from "./lib/jwt_lib";
-import { isAdmin } from "./lib/enums/roles";
+import { isAdmin } from "./enums/roles";
+import { Navigation } from "./enums/navigation";
 
 // Liste des routes nécessitant une authentification
 const authRoutes = ["/account/*", "/admin/*"];
@@ -45,7 +46,7 @@ export default async function middleware(req: NextRequest) {
 
 	if (requiresAuth && req.nextUrl.pathname.startsWith("/admin") && !isAdmin(user.role_id)) {
 		// Redirection des utilisateurs non administrateurs sur les routes d'administration
-		return NextResponse.redirect("/");
+		return NextResponse.redirect(Navigation.HOME);
 	}
 
 	return NextResponse.next(); // Continue la requête si aucune condition de redirection n'est remplie

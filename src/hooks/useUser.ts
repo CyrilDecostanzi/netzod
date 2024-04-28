@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
-import { AuthUser } from "@/lib/types/auth";
+import { AuthUser } from "@/types/auth";
 import useCookie from "@/hooks/useCookie";
 
 export const useUser = () => {

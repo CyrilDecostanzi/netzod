@@ -1,8 +1,8 @@
 "use client";
 
 import React, { ReactNode, createContext, useEffect, useState } from "react";
-import { User } from "@/lib/types/auth";
-import { getData } from "@/lib/actions/getData";
+import { User } from "@/types/auth";
+import { getData } from "@/lib/fetch_actions/getData";
 import useCookie from "@/hooks/useCookie";
 
 const USERDATA_TTL = 300; // 300 seconds or 5 minutes

@@ -1,8 +1,9 @@
 import { useUser } from "@/hooks/useUser";
-import { LoginFormData, LoginResponse } from "@/lib/types/auth";
-import { postData } from "@/lib/actions/postData";
+import { LoginFormData, LoginResponse, RegisterFormData, RegisterReponse } from "@/types/auth";
+import { postData } from "@/lib/fetch_actions/postData";
 import { useRouter } from "next/navigation";
 import useCookie from "@/hooks/useCookie";
+import { Navigation } from "@/enums/navigation";
 
 export const useAuth = () => {
 	const { user, addUser, removeUser } = useUser();
@@ -15,8 +16,14 @@ export const useAuth = () => {
 	 *
 	 * @param creds - The credentials for registration, currently of any type but should be defined.
 	 */
-	const register = async (creds: any) => {
-		// Implementation needed here.
+	const register = async (creds: RegisterFormData): Promise<RegisterReponse> => {
+		const { data, error, loading } = await postData("auth/register", creds);
+		if (data && !error) {
+			addUser(data);
+			setCookie("lastFetchTime", Date.now().toString());
+		}
+
+		return { data, error, loading };
 	};
 
 	/**
@@ -41,7 +48,7 @@ export const useAuth = () => {
 	 */
 	const logout = () => {
 		removeUser();
-		router.push("/");
+		router.push(Navigation.HOME);
 	};
 
 	return { user, login, register, logout };
