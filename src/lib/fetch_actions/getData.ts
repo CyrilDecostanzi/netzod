@@ -6,15 +6,14 @@ import { HTTPError } from "ky";
 import { ApiResponse } from "@/types/api";
 
 export async function getData(url: string, revalidate: number = 0): Promise<ApiResponse> {
+	// get token from cookie
+	const token = cookies().get("token")?.value;
 	// Initialisation de l'état de chargement
 	const response: ApiResponse = {
 		data: null,
 		loading: true,
 		error: null
 	};
-
-	// get token from cookie
-	const token = cookies().get("token")?.value;
 
 	try {
 		// Tentative de récupération des données

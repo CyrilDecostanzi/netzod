@@ -53,9 +53,9 @@ export function DropMenu({ user }: DropMenuProps) {
 						Mon compte
 					</Link>
 				</DropdownMenuItem>
-				<DropdownMenuItem onSelect={closeMenu} className="cursor-pointer">
+				{/* <DropdownMenuItem onSelect={closeMenu} className="cursor-pointer">
 					Support
-				</DropdownMenuItem>
+				</DropdownMenuItem> */}
 				<DropdownMenuSeparator />
 				<div className="flex items-center justify-center gap-2 w-full pt-4">
 					<LogoutButton />

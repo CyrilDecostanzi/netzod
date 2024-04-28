@@ -29,7 +29,7 @@ export const topData = [
 
 export const articlesData = [
 	{
-		image: "/assets/card_hero.jpg",
+		image: "/assets/card_hero3.jpg",
 		title: "La nouvelle version de React",
 		description: "React 18 est disponible"
 	},
