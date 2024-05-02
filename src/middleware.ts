@@ -12,7 +12,7 @@ const authRoutes = ["/account/*", "/admin/*"];
  */
 const deleteCookies = (response: NextResponse) => {
 	const cookieOptions = { path: "/", expires: new Date(0) }; // Options de cookies pour leur suppression
-	["user", "lastFetchTime", "token"].forEach(
+	["user", "token"].forEach(
 		(cookie) => response.cookies.set(cookie, "", cookieOptions) // Suppression de chaque cookie
 	);
 };
@@ -33,21 +33,40 @@ const matchesWildcard = (path: string, pattern: string): boolean => {
  * @returns NextResponse - Réponse modifiée en fonction de l'authentification et des droits.
  */
 export default async function middleware(req: NextRequest) {
-	const user = await getJwt(req); // Récupération du JWT de l'utilisateur
 	const requiresAuth = authRoutes.some((pattern) => matchesWildcard(req.nextUrl.pathname, pattern)); // Vérifie si la route actuelle nécessite une authentification
 
+	// Si la route ne nécessite pas d'authentification, passe directement à la suite sans vérifier le JWT
+	if (!requiresAuth) {
+		return NextResponse.next();
+	}
+
+	// Récupération du JWT de l'utilisateur seulement si l'authentification est nécessaire
+	const user = await getJwt(req);
+
+	// Construit l'URL pour la redirection en cas de besoin
 	const url = new URL("/?type=login&next=" + req.nextUrl.pathname, req.nextUrl.origin);
 
-	if (!user && requiresAuth) {
+	// Si aucun utilisateur n'est trouvé et que l'authentification est nécessaire, redirige vers la page de connexion
+	if (!user) {
 		const response = NextResponse.redirect(url.toString());
 		deleteCookies(response);
 		return response;
 	}
 
-	if (requiresAuth && req.nextUrl.pathname.startsWith("/admin") && !isAdmin(user.role_id)) {
-		// Redirection des utilisateurs non administrateurs sur les routes d'administration
+	if (requiresAuth && user && user.access_token) {
+		console.log("Rafraichissement du token JWT...");
+		const response = NextResponse.next();
+		response.cookies.set("user", JSON.stringify(user.user));
+		response.cookies.set("token", user.access_token);
+		return response;
+	}
+
+	// Vérifie si l'utilisateur a le droit d'accéder aux routes d'administration
+	if (req.nextUrl.pathname.startsWith("/admin") && !isAdmin(user.role_id)) {
+		// Redirection des utilisateurs non administrateurs
 		return NextResponse.redirect(Navigation.HOME);
 	}
 
-	return NextResponse.next(); // Continue la requête si aucune condition de redirection n'est remplie
+	// Continue la requête si toutes les conditions sont remplies
+	return NextResponse.next();
 }

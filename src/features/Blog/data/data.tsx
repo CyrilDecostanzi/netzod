@@ -54,7 +54,7 @@ export const articlesData = [
 		description: "Next 12 est disponible"
 	},
 	{
-		image: "/assets/card_hero.jpg",
+		image: "/assets/card_hero5.jpg",
 		title: "Créer une application avec Next",
 		description: "Next 12 est disponible"
 	}

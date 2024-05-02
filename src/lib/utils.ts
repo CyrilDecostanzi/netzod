@@ -1,3 +1,4 @@
+import { Images } from "@/enums/images";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -13,4 +14,11 @@ export function formatDateTime(date: string) {
 		hour: "numeric",
 		minute: "numeric"
 	});
+}
+
+export function formatImageUrl(url: string | null | undefined) {
+	if (url) {
+		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+	}
+	return Images.DEFAULT_AVATAR;
 }

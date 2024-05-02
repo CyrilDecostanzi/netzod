@@ -5,7 +5,7 @@ import { api } from "@/lib/ky_config";
 import { HTTPError } from "ky";
 import { ApiResponse } from "@/types/api";
 
-export async function postData(url: string, payload: object): Promise<ApiResponse> {
+export async function patchData(url: string, payload: object): Promise<ApiResponse> {
 	const token = cookies().get("token")?.value;
 	const response: ApiResponse = {
 		data: null,
@@ -15,7 +15,7 @@ export async function postData(url: string, payload: object): Promise<ApiRespons
 
 	try {
 		const data = await api
-			.post(url, {
+			.patch(url, {
 				json: payload,
 				headers: {
 					"Content-Type": "application/json",
@@ -23,6 +23,11 @@ export async function postData(url: string, payload: object): Promise<ApiRespons
 				}
 			})
 			.json<any>();
+		if (data?.status === 400) {
+			response.error = data;
+			response.loading = false;
+			return response;
+		}
 		response.data = data;
 		response.loading = false;
 	} catch (error: any) {
@@ -36,6 +41,7 @@ export async function postData(url: string, payload: object): Promise<ApiRespons
 				response.error = { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
 			}
 		} else {
+			console.error(error);
 			// For other non-HTTP error types, such as network errors, etc.
 			response.error = error.message;
 		}

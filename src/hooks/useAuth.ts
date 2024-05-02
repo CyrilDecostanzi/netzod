@@ -4,6 +4,7 @@ import { postData } from "@/lib/fetch_actions/postData";
 import { useRouter } from "next/navigation";
 import useCookie from "@/hooks/useCookie";
 import { Navigation } from "@/enums/navigation";
+import { ApiResponse } from "@/types/api";
 
 export const useAuth = () => {
 	const { user, addUser, removeUser } = useUser();
@@ -20,7 +21,6 @@ export const useAuth = () => {
 		const { data, error, loading } = await postData("auth/register", creds);
 		if (data && !error) {
 			addUser(data);
-			setCookie("lastFetchTime", Date.now().toString());
 		}
 
 		return { data, error, loading };
@@ -37,7 +37,6 @@ export const useAuth = () => {
 
 		if (data && !error) {
 			addUser(data);
-			setCookie("lastFetchTime", Date.now().toString());
 		}
 
 		return { data, error, loading };
@@ -46,9 +45,14 @@ export const useAuth = () => {
 	/**
 	 * Log out the current user and redirect to the homepage.
 	 */
-	const logout = () => {
+	const logout = async (): Promise<ApiResponse> => {
+		const { data, error, loading } = await postData("auth/logout", {});
+		if (error) {
+			console.log("Error logging out", error);
+		}
 		removeUser();
 		router.push(Navigation.HOME);
+		return { data, error, loading };
 	};
 
 	return { user, login, register, logout };

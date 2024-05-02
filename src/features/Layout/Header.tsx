@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Menu } from "lucide-react";
+import { CircleUser, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AuthContent } from "@/features/Auth/AuthContent";
@@ -33,7 +33,7 @@ export function Header() {
 	}, [type]);
 
 	return (
-		<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 z-50">
+		<header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 z-50">
 			<nav className="hidden flex-col gap-12 md:flex md:flex-row md:items-center">
 				<LinkList pathname={pathname} />
 				<ToggleTheme />

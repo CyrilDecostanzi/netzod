@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 export function Providers({ children }: React.PropsWithChildren) {
 	return (
-		<ThemeProvider attribute="class" enableSystem disableTransitionOnChange defaultTheme="dark">
+		<ThemeProvider attribute="class" enableSystem disableTransitionOnChange defaultTheme="system">
 			<CookiesProvider>
 				<AuthProvider>
 					<TooltipProvider>{children}</TooltipProvider>

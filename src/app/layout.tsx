@@ -30,7 +30,7 @@ export default function RootLayout({
 				<Providers>
 					<Header />
 					<div className="flex min-h-screen w-full lg:max-w-[1300px] mx-auto flex-col">
-						<main className="flex flex-col gap-4 px-8 md:gap-8 md:px-18">{children}</main>
+						<main className="flex flex-col gap-4 px-4 sm:px-8 md:gap-8 md:px-18">{children}</main>
 					</div>
 					<Footer />
 				</Providers>

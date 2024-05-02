@@ -27,42 +27,15 @@ export const AuthProvider = ({ children }: Props) => {
 
 	useEffect(() => {
 		const userCookie = getCookie("user");
-		const fetchTimeCookie = getCookie("lastFetchTime");
 
-		if (userCookie && fetchTimeCookie) {
+		if (userCookie) {
 			const userData = JSON.parse(userCookie);
-			const fetchTime = parseInt(fetchTimeCookie, 10);
-
-			if (Date.now() - fetchTime < USERDATA_TTL * 1000) {
-				setUser(userData);
-			} else {
-				refreshUserData();
-			}
+			setUser(userData);
 		} else {
 			setUser(null);
-			refreshUserData();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const refreshUserData = async () => {
-		const userData = await getUser();
-		if (userData) {
-			setUser(userData);
-			setCookie("user", JSON.stringify(userData));
-			setCookie("lastFetchTime", Date.now().toString());
-		} else {
-			setUser(null);
-		}
-	};
-
 	return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 };
-
-async function getUser() {
-	const { data, error, loading } = await getData("auth/profile");
-	if (data && !error && !loading) {
-		return data;
-	}
-	return null;
-}

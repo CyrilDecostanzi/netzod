@@ -1,8 +1,8 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
-import { LoginForm } from "./LoginForm";
-import { RegisterForm } from "./RegisterForm";
+import { LoginForm } from "./forms/LoginForm";
+import { RegisterForm } from "./forms/RegisterForm";
 import { AuthProps } from "../AuthContent";
 
 export function DesktopAuth({ open, setOpen, haveAccount, setHaveAccount }: AuthProps) {

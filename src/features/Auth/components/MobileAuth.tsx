@@ -1,8 +1,8 @@
 import { AuthProps } from "../AuthContent";
 import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { LoginForm } from "./LoginForm";
-import { RegisterForm } from "./RegisterForm";
+import { LoginForm } from "./forms/LoginForm";
+import { RegisterForm } from "./forms/RegisterForm";
 
 export function MobileAuth({ open, setOpen, haveAccount, setHaveAccount }: AuthProps) {
 	return (

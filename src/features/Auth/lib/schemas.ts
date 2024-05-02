@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const RegisterFormSchema = z
 	.object({
-		username: z.string().min(4, { message: "Le pseudo doit contenir au moins 4 caractères" }),
+		username: z.string().min(3, { message: "Le pseudo doit contenir au moins 3 caractères" }),
 		lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
 		firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
 		email: z.string().email({ message: "Veuillez entrer un email valide" }),

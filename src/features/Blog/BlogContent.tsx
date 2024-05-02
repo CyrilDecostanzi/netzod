@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { topData, articlesData } from "./data/data";
-import { CardList } from "./components/CardList";
-import { TopTable } from "./components/TopTable";
-import { ArticleList } from "./components/ArticleList";
+import { CardList } from "./components/home/CardList";
+import { TopTable } from "./components/home/TopTable";
+import { ArticleList } from "./components/home/ArticleList";
 import { Suspense } from "react";
-import { CardListSkeleton } from "./components/CardListSkeleton";
+import { CardListSkeleton } from "./components/home/CardListSkeleton";
 
 export function Content() {
 	return (

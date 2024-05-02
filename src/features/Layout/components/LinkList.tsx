@@ -23,7 +23,8 @@ export function LinkList({ pathname, onLinkClick }: LinkListProps) {
 	return (
 		<>
 			<Link href="/" className="flex flex-row justify-between">
-				<Icons.logo /> {!isDesktop && <ToggleTheme />}
+				<Icons.logo />
+				{/* {!isDesktop && <ToggleTheme />} */}
 				<span className="sr-only">Netzod</span>
 			</Link>
 			{links.map(({ href, label, icon }) => (

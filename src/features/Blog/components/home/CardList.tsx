@@ -1,9 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { ContentCard } from "./ContentCard";
 import { getData } from "@/lib/fetch_actions/getData";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
-import { CardListSkeleton } from "./CardListSkeleton";
 
 export async function CardList() {
 	const { error, data } = await getData("posts/featured/cardlist");

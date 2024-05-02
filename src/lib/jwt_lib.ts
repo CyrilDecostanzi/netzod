@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
-import { jwtVerify, JWTPayload, decodeJwt } from "jose";
+import { jwtVerify, JWTPayload } from "jose";
+import { JWTExpired } from "jose/errors";
+import { api } from "./ky_config";
 
 // ########################################################################
 // ################################## JWT #################################
@@ -11,7 +13,7 @@ import { jwtVerify, JWTPayload, decodeJwt } from "jose";
  * @returns Uint8Array - La clé secrète encodée.
  */
 function getJwtSecretKey(): Uint8Array {
-	const secret = process.env.JWT_SECRET || "";
+	const secret = process.env.JWT_SECRET;
 	if (!secret) {
 		throw new Error("La clé secrète JWT n'est pas définie.");
 	}
@@ -27,8 +29,34 @@ async function verifyJwtToken(token: string): Promise<JWTPayload | null> {
 	try {
 		const { payload } = await jwtVerify(token, getJwtSecretKey());
 		return payload;
-	} catch (error) {
-		console.error("Échec de la vérification du JWT:", error);
+	} catch (error: JWTExpired | any) {
+		if (error instanceof JWTExpired) {
+			const data = (await refreshJwtToken(token)) as { access_token: string } | null;
+			if (data) {
+				return {
+					payload: await verifyJwtToken(data.access_token),
+					access_token: data.access_token
+				};
+			}
+		}
+		return null;
+	}
+}
+
+async function refreshJwtToken(token: string) {
+	try {
+		const response = await api.post("auth/refresh", {
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ token })
+		});
+
+		const data = await response.json();
+
+		return data;
+	} catch (error: JWTExpired | any) {
+		console.error("Le token de rafraîchissement a expiré.");
 		return null;
 	}
 }
@@ -42,20 +70,22 @@ export async function getJwt(req?: any): Promise<any | null> {
 	const token = req ? req.cookies.get("token") : cookies().get("token");
 
 	if (token) {
-		const payload = await verifyJwtToken(token.value);
-		if (payload) {
+		const payload = (await verifyJwtToken(token.value)) as any;
+
+		if (payload && payload.role_id) {
 			return {
-				id: payload.id,
-				username: payload.username,
-				email: payload.email,
-				role_id: payload.role_id,
-				firstname: payload.firstname,
-				lastname: payload.lastname,
-				avatar: payload.avatar,
-				mobile: payload.mobile,
-				status: payload.status
+				user: payload,
+				access_token: payload.access_token
+			};
+		}
+
+		if (payload && payload.payload) {
+			return {
+				user: payload.payload,
+				access_token: payload.access_token
 			};
 		}
 	}
+
 	return null;
 }

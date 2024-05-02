@@ -1,11 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useUser } from "@/hooks/useUser";
-import { Edit } from "lucide-react";
-import PersonalInfos from "./components/PersonalInfos";
+import ProfileContent from "./components/ProfileContent";
 import { Biography } from "./components/Biography";
 import { AccountHeader } from "./components/AccountHeader";
 
@@ -18,7 +15,7 @@ export default function Profile() {
 				<AccountHeader />
 			</div>
 			<div className="grid gap-4 md:gap-8 md:grid-cols-7">
-				<PersonalInfos user={user} />
+				<ProfileContent user={user} />
 				<Biography user={user} />
 			</div>
 		</>

@@ -8,13 +8,14 @@ import {
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { CircleUser } from "lucide-react";
 import { User } from "@/types/auth";
 import Link from "next/link";
 import { LogoutButton } from "@/features/Auth/components/LogoutButton";
 import Image from "next/image";
-import { Images } from "@/enums/default";
+import { Images } from "@/enums/images";
 import { Navigation } from "@/enums/navigation";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { formatImageUrl } from "@/lib/utils";
 
 type DropMenuProps = {
 	user: User;
@@ -35,13 +36,11 @@ export function DropMenu({ user }: DropMenuProps) {
 		<DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
 			<DropdownMenuTrigger asChild>
 				<Button onClick={handleMenuToggle} variant="secondary" size="icon" className="rounded-full">
-					<Image
-						src={user.avatar ? process.env.NEXT_PUBLIC_API_URL + user.avatar : Images.DEFAULT_AVATAR}
-						alt="Photo by Drew Beamer"
-						width={60}
-						height={60}
-						className="rounded-full object-cover border-2 border-primary"
-					/>
+					<div className="min-w-[50px] min-h-[50px] sm:flex">
+						<AspectRatio ratio={1} className="rounded-full overflow-hidden border-primary border-2">
+							<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%"></Image>
+						</AspectRatio>
+					</div>
 					<span className="sr-only">Ouvrir le menu utilisateur</span>
 				</Button>
 			</DropdownMenuTrigger>

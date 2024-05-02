@@ -21,13 +21,7 @@ export const InputField: React.FC<InputFieldProps> = ({ label, type = "text", pl
 			</Label>
 			{error && <span className="text-red-500 text-xs">{error?.message}</span>}
 			{serverError && <span className="text-red-500 text-xs">{serverError}</span>}
-			<Input
-				{...register}
-				type={type}
-				placeholder={placeholder || ""}
-				className={`${error || serverError ? "border-red-500" : ""} `}
-				required
-			/>
+			<Input {...register} type={type} placeholder={placeholder || ""} className={`${error || serverError ? "border-red-500" : ""} `} />
 		</div>
 	);
 };

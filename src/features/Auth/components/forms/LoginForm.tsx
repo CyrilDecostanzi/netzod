@@ -9,8 +9,8 @@ import { GraduationCapIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Error } from "@/types/api";
-import { InputField } from "./InputField";
-import { LoginFormSchema } from "../lib/schemas";
+import { InputField } from "../InputField";
+import { LoginFormSchema } from "../../lib/schemas";
 import { LoginFormData } from "@/types/auth";
 
 type LoginFormProps = {

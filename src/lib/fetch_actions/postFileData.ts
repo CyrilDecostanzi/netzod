@@ -5,7 +5,7 @@ import { api } from "@/lib/ky_config";
 import { HTTPError } from "ky";
 import { ApiResponse } from "@/types/api";
 
-export async function postData(url: string, payload: object): Promise<ApiResponse> {
+export async function postFileData(url: string, payload: object): Promise<ApiResponse> {
 	const token = cookies().get("token")?.value;
 	const response: ApiResponse = {
 		data: null,
@@ -16,9 +16,8 @@ export async function postData(url: string, payload: object): Promise<ApiRespons
 	try {
 		const data = await api
 			.post(url, {
-				json: payload,
+				body: payload as BodyInit,
 				headers: {
-					"Content-Type": "application/json",
 					"Authorization": `Bearer ${token}`
 				}
 			})
