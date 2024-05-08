@@ -2,9 +2,10 @@ import { User } from "@/types/auth";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
-import { EditPersonalInfos } from "./edit/EditProfile";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { formatImageUrl } from "@/lib/utils";
+import { Edit } from "../edit/Edit";
+import { EditProfileForm } from "../edit/forms/EditProfileForm";
 
 type PersonalInfosProps = {
 	user: User | null;
@@ -15,7 +16,10 @@ export default function ProfileContent({ user }: PersonalInfosProps) {
 		<Card className="md:col-span-3">
 			<CardHeader>
 				<div className="flex flex-row justify-between items-center gap-2 w-full text-xl">
-					Informations personelles <EditPersonalInfos />
+					Informations personelles{" "}
+					<Edit>
+						<EditProfileForm />
+					</Edit>
 				</div>
 			</CardHeader>
 			<CardContent>

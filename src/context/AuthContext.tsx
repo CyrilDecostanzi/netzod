@@ -31,9 +31,9 @@ export const AuthProvider = ({ children }: Props) => {
 		if (userCookie) {
 			const userData = JSON.parse(userCookie);
 			setUser(userData);
-		} else {
-			setUser(null);
+			return;
 		}
+		setUser(null);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

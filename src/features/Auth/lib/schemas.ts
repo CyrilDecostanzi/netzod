@@ -2,9 +2,18 @@ import { z } from "zod";
 
 export const RegisterFormSchema = z
 	.object({
-		username: z.string().min(3, { message: "Le pseudo doit contenir au moins 3 caractères" }),
-		lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
-		firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
+		username: z
+			.string()
+			.min(3, { message: "Le pseudo doit contenir au moins 3 caractères" })
+			.max(50, { message: "Le pseudo doit contenir au plus 50 caractères" }),
+		lastname: z
+			.string()
+			.min(3, { message: "Le nom doit contenir au moins 3 caractères" })
+			.max(50, { message: "Le nom doit contenir au plus 50 caractères" }),
+		firstname: z
+			.string()
+			.min(3, { message: "Le prénom doit contenir au moins 3 caractères" })
+			.max(50, { message: "Le prénom doit contenir au plus 50 caractères" }),
 		email: z.string().email({ message: "Veuillez entrer un email valide" }),
 		password: z
 			.string()
@@ -20,7 +29,7 @@ export const RegisterFormSchema = z
 				{ message: "Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial" }
 			),
 
-		conf_password: z.string().min(6, { message: "Le mot de passe doit contenir au moins 6 caractères" })
+		conf_password: z.string().min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
 	})
 	.superRefine(({ conf_password, password }, ctx) => {
 		if (password !== conf_password) {

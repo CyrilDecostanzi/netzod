@@ -4,7 +4,7 @@ import { isAdmin } from "./enums/roles";
 import { Navigation } from "./enums/navigation";
 
 // Liste des routes nécessitant une authentification
-const authRoutes = ["/account/*", "/admin/*"];
+const authRoutes = ["/account/*", "/admin/*", "/dashboard/*"];
 
 /**
  * Supprime spécifiquement les cookies liés à l'authentification de l'utilisateur.

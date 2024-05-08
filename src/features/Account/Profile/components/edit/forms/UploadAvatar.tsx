@@ -31,9 +31,9 @@ export const UploadAvatar = ({ state, setState, setNewUser }: UploadAvatarProps)
 			}
 			setNewUser(data);
 			toast.success("Avatar mis à jour");
-		} else {
-			console.log("Not an image file");
+			return;
 		}
+		console.log("Not an image file");
 	};
 
 	return (

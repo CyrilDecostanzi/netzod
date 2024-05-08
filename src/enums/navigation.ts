@@ -4,5 +4,6 @@ export enum Navigation {
 	LEARNING = "/learning",
 	CONTACT = "/contact",
 	ABOUT = "/about",
-	ACCOUNT = "/account"
+	ACCOUNT = "/account",
+	DASHBOARD = "/dashboard"
 }

@@ -244,4 +244,9 @@
 	body {
 		@apply text-foreground bg-background;
 	}
+
+	code {
+		/* Keep entire lines dont wrap */
+		white-space: pre;
+	}
 }

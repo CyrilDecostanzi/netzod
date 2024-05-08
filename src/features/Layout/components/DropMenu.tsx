@@ -12,7 +12,6 @@ import { User } from "@/types/auth";
 import Link from "next/link";
 import { LogoutButton } from "@/features/Auth/components/LogoutButton";
 import Image from "next/image";
-import { Images } from "@/enums/images";
 import { Navigation } from "@/enums/navigation";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { formatImageUrl } from "@/lib/utils";
@@ -36,11 +35,9 @@ export function DropMenu({ user }: DropMenuProps) {
 		<DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
 			<DropdownMenuTrigger asChild>
 				<Button onClick={handleMenuToggle} variant="secondary" size="icon" className="rounded-full">
-					<div className="min-w-[50px] min-h-[50px] sm:flex">
-						<AspectRatio ratio={1} className="rounded-full overflow-hidden border-primary border-2">
-							<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%"></Image>
-						</AspectRatio>
-					</div>
+					<AspectRatio ratio={1} className="rounded-full overflow-hidden border-primary border-2">
+						<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%" />
+					</AspectRatio>
 					<span className="sr-only">Ouvrir le menu utilisateur</span>
 				</Button>
 			</DropdownMenuTrigger>
@@ -48,13 +45,15 @@ export function DropMenu({ user }: DropMenuProps) {
 				<DropdownMenuLabel>{user.username}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="cursor-pointer" asChild>
+					<Link href={Navigation.DASHBOARD} onClick={closeMenu}>
+						Tableau de bord
+					</Link>
+				</DropdownMenuItem>
+				<DropdownMenuItem className="cursor-pointer" asChild>
 					<Link href={Navigation.ACCOUNT} onClick={closeMenu}>
 						Mon compte
 					</Link>
 				</DropdownMenuItem>
-				{/* <DropdownMenuItem onSelect={closeMenu} className="cursor-pointer">
-					Support
-				</DropdownMenuItem> */}
 				<DropdownMenuSeparator />
 				<div className="flex items-center justify-center gap-2 w-full pt-4">
 					<LogoutButton />

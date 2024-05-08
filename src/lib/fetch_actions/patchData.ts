@@ -23,6 +23,7 @@ export async function patchData(url: string, payload: object): Promise<ApiRespon
 				}
 			})
 			.json<any>();
+
 		if (data?.status === 400) {
 			response.error = data;
 			response.loading = false;
@@ -33,18 +34,15 @@ export async function patchData(url: string, payload: object): Promise<ApiRespon
 	} catch (error: any) {
 		response.loading = false;
 		if (error instanceof HTTPError) {
-			// Try to retrieve the response body that contains the JSON error message
 			try {
 				const errorBody = await error.response.json();
 				response.error = errorBody || { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
 			} catch (parseError) {
 				response.error = { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
 			}
-		} else {
-			console.error(error);
-			// For other non-HTTP error types, such as network errors, etc.
-			response.error = error.message;
+			return response;
 		}
+		response.error = error.message;
 	}
 
 	return response;

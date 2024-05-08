@@ -10,3 +10,14 @@ export type EditProfileFormData = {
 export type EditBioFormData = {
 	bio: string;
 };
+
+export type EditPasswordFormData = {
+	old_password: string;
+	password: string;
+	confirmPassword: string;
+};
+
+export type EditFormProps = {
+	open?: boolean;
+	setOpen?: (open: boolean) => void;
+};

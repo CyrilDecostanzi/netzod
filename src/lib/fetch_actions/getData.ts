@@ -29,6 +29,12 @@ export async function getData(url: string, revalidate: number = 0): Promise<ApiR
 			})
 			.json<any>();
 
+		if (data?.status === 400) {
+			response.error = data;
+			response.loading = false;
+			return response;
+		}
+
 		response.data = data;
 		response.loading = false;
 	} catch (error: any) {
@@ -43,10 +49,9 @@ export async function getData(url: string, revalidate: number = 0): Promise<ApiR
 			} catch (parseError) {
 				response.error = { message: "Une erreur est survenue lors de la récupération de l'erreur", field: null, status: 500 };
 			}
-		} else {
-			// For other non-HTTP error types, such as network errors, etc.
-			response.error = error.message;
+			return response;
 		}
+		response.error = error.message;
 	}
 
 	return response;

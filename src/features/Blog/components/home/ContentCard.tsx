@@ -7,7 +7,6 @@ import Image from "next/image";
 
 export function ContentCard({ ...post }: Post) {
 	const { category, title, content, cover, user, published_at } = post;
-
 	return (
 		<Card className="rounded-lg shadow-lg overflow-hidden">
 			<AspectRatio ratio={16 / 9} className="bg-muted rounded-t-lg relative">
@@ -28,7 +27,7 @@ export function ContentCard({ ...post }: Post) {
 				<p className=" text-muted-foreground line-clamp-2 my-2">{content}</p>
 				<Separator className="mb-2" />
 				<em className="text-foreground text-xs">
-					par <span className="text-primary">{user.username}</span> le {formatDateTime(published_at)}
+					par <span className="text-primary">{user?.username}</span> le {formatDateTime(published_at)}
 				</em>
 			</CardContent>
 		</Card>

@@ -9,19 +9,15 @@ import { toast } from "sonner";
 import { EditProfileFormData } from "@/types/edit";
 import { Error } from "@/types/api";
 import { getData } from "@/lib/fetch_actions/getData";
-import { SkeletonEditForm } from "../../SkeletonEditForm";
+import { SkeletonEditForm } from "../../skeletons/SkeletonEditForm";
 import useCookie from "@/hooks/useCookie";
 import { AuthContext } from "@/context/AuthContext";
 import { User } from "@/types/auth";
 import { EditFormSchema } from "../../../lib/schemas";
 import { patchData } from "@/lib/fetch_actions/patchData";
-import { fields } from "../lib/utils";
+import { profileFields } from "../lib/utils";
 import { UploadAvatar } from "./UploadAvatar";
-
-type EditFormProps = {
-	open: boolean;
-	setOpen: (open: boolean) => void;
-};
+import { EditFormProps } from "@/types/edit";
 
 export const EditProfileForm = ({ open, setOpen }: EditFormProps) => {
 	const { setUser } = useContext(AuthContext);
@@ -46,7 +42,7 @@ export const EditProfileForm = ({ open, setOpen }: EditFormProps) => {
 		if (data) {
 			toast.success("Enregistrement réussi");
 			setNewUser(data);
-			setOpen(!open);
+			setOpen && setOpen(!open);
 		}
 		if (error) {
 			setState({ ...state, serverError: error.status ? error : error.errors[0] });
@@ -80,7 +76,7 @@ export const EditProfileForm = ({ open, setOpen }: EditFormProps) => {
 					<CardContent>
 						<div className="grid sm:grid-cols-2 gap-4 ">
 							<UploadAvatar state={state} setState={setState} setNewUser={setNewUser} />
-							{fields.map((field) => (
+							{profileFields.map((field) => (
 								<InputField
 									key={field.name}
 									label={field.label}
@@ -98,7 +94,7 @@ export const EditProfileForm = ({ open, setOpen }: EditFormProps) => {
 								className="w-full mt-2"
 								onClick={(e) => {
 									e.preventDefault();
-									setOpen(!open);
+									setOpen && setOpen(!open);
 								}}
 							>
 								Annuler
