@@ -74,10 +74,9 @@ export const editorConfig = {
 		Color,
 		TextStyle
 	],
-	content: "",
 	editorProps: {
 		attributes: {
-			class: "rounded-xl border-none p-4 sm:p-6 md:p-12 bg-card shadow-lg min-h-[600px]"
+			class: "rounded-xl border-none p-6 sm:p-6 md:p-12 bg-card shadow-lg min-h-[600px]"
 		}
 	}
 };

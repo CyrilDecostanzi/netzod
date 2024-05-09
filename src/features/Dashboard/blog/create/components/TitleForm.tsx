@@ -1,29 +1,52 @@
+"use client";
+
+import React, { useEffect, useState, useContext } from "react";
+import { getData } from "@/lib/fetch_actions/getData";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
+
+import { PostContext } from "@/context/PostContext";
 
 export const TitleForm = () => {
+	const { post, setPost } = useContext(PostContext);
+	const [categories, setCategories] = useState([]);
+
+	const getCategories = async () => {
+		const { data: categoriesData } = await getData("categories");
+		setCategories(categoriesData);
+	};
+
+	useEffect(() => {
+		getCategories();
+	}, []);
+
 	return (
 		<form className="grid md:grid-cols-7 gap-4 w-full xl:w-[80%] mx-auto">
-			<Input type="text" placeholder="Titre" className="text-2xl p-6 md:col-span-4 rounded-xl" />
-			<Select>
-				<SelectTrigger className="text-xl p-6 md:col-span-3 rounded-xl ">
+			<Input
+				type="text"
+				placeholder="Titre"
+				className="text-2xl p-6 md:col-span-4 rounded-xl"
+				onChange={(e) => setPost({ ...post, title: e.target.value })}
+				value={post?.title || ""}
+			/>
+			<Select
+				onValueChange={(value) => {
+					if (!value) return;
+					setPost({ ...post, category_id: parseInt(value) });
+				}}
+				value={post?.category_id?.toString()}
+			>
+				<SelectTrigger className="text-xl p-6 md:col-span-3 rounded-xl">
 					<SelectValue placeholder="Catégorie" />
 				</SelectTrigger>
 				<SelectContent>
 					<SelectGroup>
 						<SelectLabel>Catégories</SelectLabel>
-						<SelectItem value="1" key={1}>
-							Catégorie 1
-						</SelectItem>
-						<SelectItem value="2" key={2}>
-							Catégorie 2
-						</SelectItem>
-						<SelectItem value="3" key={3}>
-							Catégorie 3
-						</SelectItem>
-						<SelectItem value="4" key={4}>
-							Catégorie 4
-						</SelectItem>
+						{categories.map((category: any) => (
+							<SelectItem key={category.id} value={category.id.toString()}>
+								{category.name}
+							</SelectItem>
+						))}
 					</SelectGroup>
 				</SelectContent>
 			</Select>

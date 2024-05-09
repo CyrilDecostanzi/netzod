@@ -9,7 +9,7 @@ export async function CardList() {
 
 	if (data && data.length === 0) {
 		return (
-			<Alert className="items-center space-x-2 md:w-[700px] mx-auto">
+			<Alert className="items-center space-x-2 col-span-4">
 				<Terminal className="h-4 w-4 " color="white" />
 				<AlertTitle className="text-white">Aucun article trouvé</AlertTitle>
 			</Alert>
@@ -18,7 +18,7 @@ export async function CardList() {
 
 	if (error) {
 		return (
-			<Alert className="items-center space-x-2 md:w-[700px] mx-auto bg-red-800">
+			<Alert className="items-center space-x-2 col-span-4 bg-red-800">
 				<Terminal className="h-4 w-4 " color="white" />
 				<AlertTitle className="text-white">{error.message}</AlertTitle>
 			</Alert>

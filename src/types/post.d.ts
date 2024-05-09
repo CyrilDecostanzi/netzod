@@ -4,7 +4,7 @@ import { Category } from "./category";
 export type Post = {
 	id: number;
 	title: string;
-	content: string;
+	content: string | TrustedHTML;
 	cover: string;
 	slug: string;
 	published_at: string;
@@ -12,5 +12,6 @@ export type Post = {
 	updated_at: string;
 	deleted_at: string;
 	category: Category;
+	category_id?: number | string;
 	user: User;
 };

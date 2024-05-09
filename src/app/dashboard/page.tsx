@@ -14,6 +14,9 @@ export default function Dashboard() {
 	return (
 		<>
 			<HeroBanner title="Tableau de bord" description="Vue d'ensemble de vos activités." />
+			<Button size="sm" className="mb-4 gap-1" asChild>
+				<Link href="/dashboard/blog/create">Créer un article</Link>
+			</Button>
 			<div className="flex flex-1 flex-col gap-4 md:gap-8 ">
 				<div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
 					<Card x-chunk="dashboard-01-chunk-0">

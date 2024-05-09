@@ -16,9 +16,17 @@ export function formatDateTime(date: string) {
 	});
 }
 
-export function formatImageUrl(url: string | null | undefined) {
+export function formatImageUrl(url: string | null | undefined, type: "avatar" | "cover" | "post" = "avatar") {
 	if (url) {
 		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
 	}
-	return Images.DEFAULT_AVATAR;
+
+	switch (type) {
+		case "avatar":
+			return Images.DEFAULT_AVATAR;
+		case "cover":
+			return Images.DEFAULT_COVER;
+		default:
+			return Images.DEFAULT_AVATAR;
+	}
 }
