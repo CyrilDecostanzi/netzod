@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
 
 import { PostContext } from "@/context/PostContext";
+import { Textarea } from "@/components/ui/textarea";
 
 export const TitleForm = () => {
 	const { post, setPost } = useContext(PostContext);
@@ -50,6 +51,13 @@ export const TitleForm = () => {
 					</SelectGroup>
 				</SelectContent>
 			</Select>
+			<Textarea
+				placeholder="Décrivez votre sujet..."
+				className="text-xl p-6 md:col-span-7 rounded-xl"
+				rows={5}
+				onChange={(e) => setPost({ ...post, description: e.target.value })}
+				value={post?.description || ""}
+			/>
 		</form>
 	);
 };

@@ -81,14 +81,14 @@ export const RegisterForm = ({ open, setOpen }: RegisterFormProps) => {
 							/>
 						))}
 
-						<Button type="submit" className="w-full">
-							Inscription
-						</Button>
-						<Button variant="outline" className="w-full">
+						{/* <Button variant="outline" className="w-full">
 							<GraduationCapIcon className="w-4 h-4 mr-2" />
 							Inscription avec Google
-						</Button>
+						</Button> */}
 					</div>
+					<Button type="submit" className="w-full mx-auto mt-6">
+						Inscription
+					</Button>
 				</CardContent>
 			</form>
 		</Card>

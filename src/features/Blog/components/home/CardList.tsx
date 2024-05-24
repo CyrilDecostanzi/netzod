@@ -5,7 +5,7 @@ import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
 
 export async function CardList() {
-	const { error, data } = await getData("posts/featured/cardlist");
+	const { error, data } = await getData("posts/featured/list");
 
 	if (data && data.length === 0) {
 		return (

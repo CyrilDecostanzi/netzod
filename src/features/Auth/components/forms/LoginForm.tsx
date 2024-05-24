@@ -73,10 +73,10 @@ export function LoginForm({ open, setOpen }: LoginFormProps) {
 						<Button type="submit" className="w-full">
 							Connexion
 						</Button>
-						<Button variant="outline" className="w-full">
+						{/* <Button variant="outline" className="w-full">
 							<GraduationCapIcon className="w-4 h-4 mr-2" />
 							Connexion avec Google
-						</Button>
+						</Button> */}
 					</div>
 				</CardContent>
 			</form>

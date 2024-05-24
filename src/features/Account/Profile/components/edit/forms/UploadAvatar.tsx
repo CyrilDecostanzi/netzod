@@ -24,7 +24,7 @@ export const UploadAvatar = ({ state, setState, setNewUser }: UploadAvatarProps)
 
 		if (file && file.type.substr(0, 5) === "image") {
 			const formData = getFormDataWithFile(file);
-			const { data, error } = await postFileData("image/avatar", formData);
+			const { data, error } = await postFileData("images/avatar", formData);
 			if (error) {
 				setState({ ...state, serverError: error });
 				return;

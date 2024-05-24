@@ -14,13 +14,14 @@ import Code from "@tiptap/extension-code";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import { mergeAttributes } from "@tiptap/core";
+import Placeholder from "@tiptap/extension-placeholder";
 
 export const editorConfig = {
 	extensions: [
 		Document,
 		Paragraph.configure({
 			HTMLAttributes: {
-				class: "text-base leading-8"
+				class: "text-lg leading-8"
 			}
 		}),
 		Bold,
@@ -52,12 +53,12 @@ export const editorConfig = {
 		}),
 		BulletList.configure({
 			HTMLAttributes: {
-				class: "list-disc my-5"
+				class: "list-disc my-5 ml-5 sm:ml-10"
 			}
 		}),
 		OrderedList.configure({
 			HTMLAttributes: {
-				class: "list-decimal my-5"
+				class: "list-decimal my-5 ml-5 sm:ml-10 text-lg"
 			}
 		}),
 		ListItem,
@@ -72,7 +73,11 @@ export const editorConfig = {
 			}
 		}),
 		Color,
-		TextStyle
+		TextStyle,
+		Placeholder.configure({
+			placeholder: "Commencez à écrire ici...",
+			emptyEditorClass: "cursor-text before:content-[attr(data-placeholder)]  before:text-mauve-11 before:opacity-50 before-pointer-events-none"
+		})
 	],
 	editorProps: {
 		attributes: {

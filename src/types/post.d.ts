@@ -4,6 +4,7 @@ import { Category } from "./category";
 export type Post = {
 	id: number;
 	title: string;
+	description: string;
 	content: string | TrustedHTML;
 	cover: string;
 	slug: string;

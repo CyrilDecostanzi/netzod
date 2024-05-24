@@ -72,8 +72,19 @@ const config: Config = {
 				"hero": "url('/assets/hero_bg.jpg')",
 				"gradient-hero": "linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%)"
 			}
+		},
+		fontSize: {
+			"sm": "0.9rem",
+			"base": "1.1rem",
+			"lg": "1.4rem",
+			"xl": "1.6rem",
+			"2xl": "1.9rem",
+			"3xl": "2.3rem",
+			"4xl": "3rem",
+			"5xl": "4rem",
+			"6xl": "5rem"
 		}
 	},
-	plugins: [require("tailwindcss-animate")]
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")]
 };
 export default config;

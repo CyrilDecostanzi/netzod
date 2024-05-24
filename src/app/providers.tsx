@@ -10,7 +10,7 @@ export function Providers({ children }: React.PropsWithChildren) {
 			<CookiesProvider>
 				<AuthProvider>
 					<TooltipProvider>{children}</TooltipProvider>
-					<Toaster />
+					<Toaster position="top-center" />
 				</AuthProvider>
 			</CookiesProvider>
 		</ThemeProvider>

@@ -17,7 +17,7 @@ type AlertProps = {
 };
 
 export const Alert = ({ open, setOpen }: AlertProps) => {
-	const { post, setPost, loadPost, createDraft } = usePostContext();
+	const { loadPost, createDraft } = usePostContext();
 
 	const handleContinue = () => {
 		loadPost(localStorage.getItem("draftPostId"));

@@ -15,7 +15,7 @@ export function LinkList({ pathname, onLinkClick }: LinkListProps) {
 	const links = [
 		{ href: Navigation.HOME, label: "Accueil", icon: null },
 		{ href: Navigation.BLOG, label: "Blog", icon: null },
-		{ href: Navigation.LEARNING, label: "Learning", icon: null },
+		// { href: Navigation.LEARNING, label: "Learning", icon: null },
 		{ href: Navigation.CONTACT, label: "Contact", icon: null },
 		{ href: Navigation.ABOUT, label: "À propos", icon: null }
 	];

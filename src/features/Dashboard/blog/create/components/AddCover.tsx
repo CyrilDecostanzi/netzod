@@ -25,7 +25,7 @@ export const AddCover = () => {
 		if (file && file.type.substr(0, 5) === "image") {
 			const formData = new FormData();
 			formData.append("file", file);
-			const { data, error } = await postFileData(`image/post/cover/${post.id}`, formData);
+			const { data, error } = await postFileData(`images/post/cover/${post.id}`, formData);
 			if (error) {
 				console.log("error", error);
 				setState({ ...state, serverError: error });
