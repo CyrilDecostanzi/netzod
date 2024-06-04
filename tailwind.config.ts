@@ -63,7 +63,8 @@ const config: Config = {
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
-				"accordion-up": "accordion-up 0.2s ease-out"
+				"accordion-up": "accordion-up 0.2s ease-out",
+				"spin-slow": "spin 12s linear infinite"
 			},
 			fontFamily: {
 				sans: ["var(--font-sans)", ...fontFamily.sans]
@@ -76,15 +77,18 @@ const config: Config = {
 		fontSize: {
 			"sm": "0.9rem",
 			"base": "1.1rem",
-			"lg": "1.4rem",
+			"lg": "1.2rem",
 			"xl": "1.6rem",
-			"2xl": "1.9rem",
+			"2xl": "1.8rem",
 			"3xl": "2.3rem",
 			"4xl": "3rem",
 			"5xl": "4rem",
-			"6xl": "5rem"
+			"6xl": "6rem",
+			"7xl": "7rem",
+			"8xl": "8rem",
+			"9xl": "9rem"
 		}
 	},
-	plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")]
+	plugins: [require("tailwindcss-animate")]
 };
 export default config;

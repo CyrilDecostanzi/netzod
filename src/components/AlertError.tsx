@@ -10,8 +10,8 @@ export const AlertError = (props: AlertErrorProps) => {
 
 	return (
 		<Alert className="items-center space-x-2 col-span-4 mt-8">
-			<Terminal className="h-4 w-4 " color="white" />
-			<AlertTitle className="text-white">{message}</AlertTitle>
+			<Terminal className="h-4 w-4 " />
+			<AlertTitle>{message}</AlertTitle>
 		</Alert>
 	);
 };

@@ -61,15 +61,19 @@ export const editorConfig = {
 				class: "list-decimal my-5 ml-5 sm:ml-10 text-lg"
 			}
 		}),
-		ListItem,
+		ListItem.configure({
+			HTMLAttributes: {
+				class: "pb-5"
+			}
+		}),
 		CodeBlock.configure({
 			HTMLAttributes: {
-				class: "rounded-xl bg-gray-800 text-white p-4 my-5 text-base overflow-x-auto"
+				class: "rounded-xl bg-gray-800 text-white p-4 my-8 text-sm overflow-x-auto"
 			}
 		}),
 		Code.configure({
 			HTMLAttributes: {
-				class: "rounded-xl bg-gray-800 text-white py-1 px-2 mx-1 text-base"
+				class: "rounded-lg bg-gray-800 text-white py-1 px-2 mx-1 text-sm"
 			}
 		}),
 		Color,
@@ -81,7 +85,7 @@ export const editorConfig = {
 	],
 	editorProps: {
 		attributes: {
-			class: "rounded-xl border-none p-6 sm:p-6 md:p-12 bg-card shadow-lg min-h-[600px]"
+			class: "rounded-xl p-6 sm:p-6 md:p-12 bg-card shadow-lg min-h-[600px] border w-full"
 		}
 	}
 };

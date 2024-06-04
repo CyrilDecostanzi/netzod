@@ -15,7 +15,7 @@ export default function ProfileContent({ user }: PersonalInfosProps) {
 	return (
 		<Card className="md:col-span-3">
 			<CardHeader>
-				<div className="flex flex-row justify-between items-center gap-2 w-full text-xl">
+				<div className="flex flex-row justify-between items-center gap-2 w-full text-lg">
 					Informations personelles{" "}
 					<Edit>
 						<EditProfileForm />
@@ -46,7 +46,7 @@ export default function ProfileContent({ user }: PersonalInfosProps) {
 								<div className="text-base font-bold">Nom</div>
 								<div className="text-base font-bold">Téléphone</div>
 							</div>
-							<div className="flex flex-col gap-2 max-w-[180px] sm:max-w-[250px] overflow-hidden">
+							<div className="flex flex-col gap-2 max-w-[150px] sm:max-w-[250px] overflow-hidden">
 								<div className="text-base overflow-hidden overflow-ellipsis whitespace-nowrap">{user?.username}</div>
 								<div className="text-base overflow-hidden overflow-ellipsis whitespace-nowrap">{user?.email}</div>
 								<div className="text-base overflow-hidden overflow-ellipsis whitespace-nowrap">{user?.firstname}</div>

@@ -32,7 +32,7 @@ export function Biography({ user }: BiographyProps) {
 	return (
 		<Card className="md:col-span-4">
 			<CardHeader>
-				<div className="flex flex-row justify-between gap-2 w-full text-xl">
+				<div className="flex flex-row justify-between gap-2 w-full text-lg">
 					Biographie{" "}
 					<Edit>
 						<EditBioForm />
@@ -41,7 +41,7 @@ export function Biography({ user }: BiographyProps) {
 			</CardHeader>
 			<CardContent>
 				{profile ? (
-					<div>{profile.bio ? <div>{profile.bio}</div> : <div className="text-muted-foreground">Pas de biographie</div>}</div>
+					<div>{profile.bio ? <p className="text-base">{profile.bio}</p> : <p className="text-muted-foreground">Pas de biographie</p>}</div>
 				) : (
 					<Skeleton className="h-16" />
 				)}

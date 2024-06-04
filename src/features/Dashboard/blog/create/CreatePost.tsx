@@ -34,7 +34,6 @@ export function CreatePost() {
 
 	useEffect(() => {
 		const draftPostId = localStorage.getItem("draftPostId");
-
 		if (draftPostId) {
 			loadPost(localStorage.getItem("draftPostId"));
 			return;
@@ -57,13 +56,13 @@ export function CreatePost() {
 		[post, editor, updatePost]
 	);
 
-	if (!editor) return <Skeleton className="w-full xl:w-[80%] h-[500px] mx-auto" />;
+	if (!editor) return <Skeleton className="w-full mx-auto" />;
 
 	return (
-		<div className="flex flex-col items-center gap-6">
+		<div className="flex flex-col items-center gap-6 relative">
 			<Alert open={open} setOpen={setOpen} />
-			<div className="w-full xl:w-[80%] mx-auto  flex gap-6 justify-between">
-				<div className="flex gap-6">
+			<div className="w-full mx-auto flex gap-6 justify-between">
+				<div className="flex gap-2 sm:gap-6">
 					<Button
 						onClick={() => {
 							localStorage.removeItem("draftPostId");
@@ -105,7 +104,7 @@ export function CreatePost() {
 			<TitleForm />
 			<AddCover />
 			<Toolbar editor={editor} />
-			<EditorContent editor={editor} className="w-full xl:w-[80%] mx-auto" placeholder="Commencez à écrire ici..." />
+			<EditorContent editor={editor} placeholder="Commencez à écrire ici..." className="w-full" />
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
 export enum Images {
-	DEFAULT_AVATAR = "/assets/default-avatar.jpg",
-	DEFAULT_COVER = "/assets/default-cover.jpg"
+	DEFAULT_AVATAR = "/assets/placeholder/default-avatar.jpg",
+	DEFAULT_COVER = "/assets/placeholder/default-cover.jpg"
 }

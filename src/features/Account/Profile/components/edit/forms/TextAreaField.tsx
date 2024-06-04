@@ -20,7 +20,12 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({ label, placeholder
 			</Label>
 			{error && <span className="text-red-500 text-xs">{error?.message}</span>}
 			{serverError && <span className="text-red-500 text-xs">{serverError}</span>}
-			<Textarea {...register} placeholder={placeholder || ""} className={`${error || serverError ? "border-red-500" : ""} `} rows={8} />
+			<Textarea
+				{...register}
+				placeholder={placeholder || ""}
+				className={`${error || serverError ? "border-red-500" : ""} text-base`}
+				rows={8}
+			/>
 		</div>
 	);
 };

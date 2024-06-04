@@ -32,9 +32,9 @@ export function PostRow({ post, setLoading, onPostUpdate }: PostRowProps) {
 	return (
 		<TableRow>
 			<TableCell className="grid grid-cols-8 gap-4 max-w-[600px]">
-				<div className="col-span-2 hidden md:grid">
+				<div className="col-span-2 hidden md:grid lg:min-w-28">
 					<AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
-						<Image src={formatImageUrl(cover)} alt={"title"} fill sizes="100%" className="rounded-lg object-cover" priority />
+						<Image src={formatImageUrl(cover, "cover")} alt={"title"} fill sizes="100%" className="rounded-lg object-cover" priority />
 					</AspectRatio>
 				</div>
 				<div className="col-span-8 sm:col-span-6">

@@ -17,7 +17,7 @@ import { ImageUploader } from "./ImageUploader";
 
 export const Toolbar = ({ editor }: { editor: Editor }) => {
 	return (
-		<div className="sticky top-[9rem] md:top-[5rem] flex  flex-wrap gap-2  justify-center z-10">
+		<div className="sticky top-[5rem] flex  flex-wrap gap-2  justify-center z-10">
 			<Button onClick={() => editor.chain().focus().toggleBold().run()} variant={editor.isActive("bold") ? "default" : "border"}>
 				<BoldIcon />
 			</Button>

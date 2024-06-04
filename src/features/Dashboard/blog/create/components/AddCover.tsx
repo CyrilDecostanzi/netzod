@@ -38,7 +38,7 @@ export const AddCover = () => {
 		console.log("Not an image file");
 	};
 	return (
-		<Card className="w-full xl:w-[80%] mx-auto overflow-hidden lg:p-12 rounded-xl">
+		<Card className="w-full mx-auto overflow-hidden lg:p-12 rounded-xl">
 			<CardHeader>
 				<CardTitle>Image de couverture</CardTitle>
 			</CardHeader>

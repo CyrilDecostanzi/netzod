@@ -19,9 +19,7 @@ export function Content() {
 					<CardHeader className="flex flex-col items-start sticky top-0 bg-transparent z-50 ">
 						<div className="grid gap-2">
 							<CardTitle>Top 5 JS frameworks</CardTitle>
-							<CardDescription>
-								Les 5 frameworks JS les plus téléchargés sur npm aujourd'hui le {new Date().toLocaleDateString()}
-							</CardDescription>
+							<CardDescription>Les 5 frameworks JS frontend les plus téléchargés sur npm hier</CardDescription>
 						</div>
 					</CardHeader>
 					<CardContent>

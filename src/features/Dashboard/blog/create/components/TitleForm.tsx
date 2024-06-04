@@ -22,11 +22,11 @@ export const TitleForm = () => {
 	}, []);
 
 	return (
-		<form className="grid md:grid-cols-7 gap-4 w-full xl:w-[80%] mx-auto">
+		<form className="grid md:grid-cols-7 gap-4 w-full mx-auto">
 			<Input
 				type="text"
 				placeholder="Titre"
-				className="text-2xl p-6 md:col-span-4 rounded-xl"
+				className="text-xl p-6 md:col-span-4 rounded-xl"
 				onChange={(e) => setPost({ ...post, title: e.target.value })}
 				value={post?.title || ""}
 			/>

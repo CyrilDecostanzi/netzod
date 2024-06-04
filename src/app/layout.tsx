@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "../styles/globals.css";
 
@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/features/Layout/Header";
 import { Footer } from "@/features/Layout/Footer";
 import { Providers } from "./providers";
+import PageTransitionEffect from "@/components/PageTransition";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -19,6 +20,13 @@ export const metadata: Metadata = {
 	description: "Netzod.fr est un blog sur le développement web et mobile, les nouvelles technologies et l'actualité informatique."
 };
 
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false
+};
+
 export default function RootLayout({
 	children
 }: Readonly<{
@@ -26,12 +34,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={cn("min-h-screen bg-background font-sans antialiased bg-gradient-to-b from-background to-secondary", fontSans.variable)}>
+			<body
+				className={cn(
+					"font-sans min-h-screen w-full mx-auto flex-col relative bg-[url(/assets/pngs/bg8.png)] bg-fixed bg-cover bg-center bg-no-repeat",
+					fontSans.variable
+				)}
+			>
 				<Providers>
 					<Header />
-					<div className="flex min-h-screen w-full lg:max-w-[1300px] mx-auto flex-col">
-						<main className="flex flex-col gap-4 px-4 sm:px-8 md:gap-8 md:px-18">{children}</main>
-					</div>
+					<PageTransitionEffect>{children}</PageTransitionEffect>
 					<Footer />
 				</Providers>
 			</body>

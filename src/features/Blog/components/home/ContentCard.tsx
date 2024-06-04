@@ -11,19 +11,19 @@ export function ContentCard({ ...post }: Post) {
 
 	return (
 		<Card className="rounded-lg shadow-lg overflow-hidden">
-			<Link href={`/blog/${post.slug}`}>
+			<Link href={`/blog/${post.slug}`} scroll={false}>
 				<AspectRatio ratio={16 / 9} className="bg-muted rounded-t-lg relative">
-					<Image src={formatImageUrl(cover, "cover")} alt={title} fill sizes="100%" className="rounded-t-lg object-cover" />
+					<Image src={formatImageUrl(cover, "cover")} alt={title} fill sizes="100%" className="rounded-t-lg object-cover" priority />
 					<div className="absolute bottom-4 left-4 bg-primary px-2 rounded-xl">
 						<p className="text-sm font-medium text-primary-foreground">{category.name}</p>
 					</div>
 				</AspectRatio>
 
 				<CardContent className="pt-4 pb-2">
-					<p className="text-lg/6 line-clamp-2 font-medium">{title}</p>
-					<p className="text-sm line-clamp-3 mt-2 min-h-12">{description}</p>
+					<p className="text-lg/6 line-clamp-2 font-medium min-h-12">{title}</p>
+					<p className="text-sm text-muted-foreground line-clamp-2 mt-2 min-h-10">{description}</p>
 					<Separator className="my-2" />
-					<em className="text-foreground text-xs">
+					<em className="text-muted-foreground text-xs">
 						par <span className="text-primary">{user?.username}</span> le {formatDateTime(published_at)}
 					</em>
 				</CardContent>
