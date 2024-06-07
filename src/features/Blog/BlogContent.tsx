@@ -9,7 +9,7 @@ import { CardListSkeleton } from "./components/home/CardListSkeleton";
 export function Content() {
 	return (
 		<>
-			<div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4 w-full">
+			<div className="grid gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-4 w-full">
 				<Suspense fallback={<CardListSkeleton />}>
 					<CardList />
 				</Suspense>

@@ -45,12 +45,12 @@ export function DropMenu({ user }: DropMenuProps) {
 				<DropdownMenuLabel>{user.username}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="cursor-pointer" asChild>
-					<Link href={Navigation.DASHBOARD} onClick={closeMenu} scroll={false}>
+					<Link href={Navigation.DASHBOARD} onClick={closeMenu}>
 						Tableau de bord
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem className="cursor-pointer" asChild>
-					<Link href={Navigation.ACCOUNT} onClick={closeMenu} scroll={false}>
+					<Link href={Navigation.ACCOUNT} onClick={closeMenu}>
 						Mon compte
 					</Link>
 				</DropdownMenuItem>

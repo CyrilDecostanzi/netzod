@@ -37,7 +37,7 @@ export const TitleForm = () => {
 				}}
 				value={post?.category_id?.toString()}
 			>
-				<SelectTrigger className="text-xl p-6 md:col-span-3 rounded-xl">
+				<SelectTrigger className="text-xl p-6 md:col-span-3 rounded-xl z-20">
 					<SelectValue placeholder="Catégorie" />
 				</SelectTrigger>
 				<SelectContent>

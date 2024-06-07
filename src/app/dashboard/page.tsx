@@ -1,16 +1,11 @@
-"use client";
+import { DashboardContent } from "@/features/Dashboard/DashboardContent";
+import { Metadata } from "next";
 
-/* eslint-disable react/no-unescaped-entities */
-import { HeroBanner } from "@/components/HeroBanner";
-import { PostList } from "@/features/Dashboard/blog/home/components/PostList";
-import { PostProvider } from "@/context/PostContext";
+export const metadata: Metadata = {
+	title: "Tableau de bord",
+	description: "Vue d'ensemble de vos activités."
+};
 
 export default function Dashboard() {
-	return (
-		<PostProvider>
-			<HeroBanner title="Tableau de bord" description="Vue d'ensemble de vos activités." />
-
-			<PostList />
-		</PostProvider>
-	);
+	return <DashboardContent />;
 }

@@ -7,6 +7,7 @@ import { Icons } from "@/components/icons";
 import { Code, Download, GraduationCap, Send } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
+import { Metadata } from "next";
 
 const technoCards = [
 	{
@@ -45,7 +46,7 @@ const experiences = [
 		description: "Gestion et développement d'une boutique e-commerce spécialisée dans les accessoires de randonnée."
 	},
 	{
-		title: "Facilitateur chantier maintenance aéronautique",
+		title: "Logistique chantier maintenance aéronautique",
 		company: "AIRBUS",
 		duration: "Juin 2015 - Oct 2018",
 		description: "Gestion du flux logistique et relevés techniques sur logiciel interne (SAP)."
@@ -57,6 +58,11 @@ const experiences = [
 		description: "Chef d'équipe en companie de combat, missions opérationnelles en France et à l'étranger."
 	}
 ];
+
+export const metadata: Metadata = {
+	title: "À propos",
+	description: "Découvrez mon parcours, mes compétences et mes expériences."
+};
 
 export default function About() {
 	return (
@@ -82,9 +88,15 @@ export default function About() {
 			<div className="grid grid-cols-2 gap-4 my-12 md:grid-cols-4">
 				{technoCards.map((card, index) => (
 					<div key={index} className="flex flex-col items-center justify-center p-4">
-						<div className="flex items-center justify-center bg-gray-100 w-36 h-36 rounded-full">
-							<AspectRatio ratio={4 / 3}>
-								<Image src={`/assets/dev_logos/${card.name}.png`} alt={card.title} layout="fill" objectFit="contain" />
+						<div className="flex items-center justify-center w-12 h-12 rounded-full">
+							<AspectRatio ratio={1}>
+								<Image
+									src={`/assets/dev_logos/${card.name}.png`}
+									alt={card.title}
+									width={100}
+									height={100}
+									className="object-contain"
+								/>
 							</AspectRatio>
 						</div>
 						<h3 className="mt-4 text-xl font-bold text-center">{card.title}</h3>
@@ -94,14 +106,14 @@ export default function About() {
 			</div>
 			<h2 className="text-3xl font-bold mb-4 ml-4 md:ml-8 flex items-center">
 				<Code className="min-h-8 min-w-8 mr-4" />
-				Expérience Professionnelle
+				Expérience
 			</h2>
 			<div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-4">
 				{experiences.map((experience, index) => (
 					<Card key={index} className="p-4 md:p-8">
 						<h3 className="text-xl font-bold">{experience.title}</h3>
-						<p className="text-sm text-gray-600">
-							{experience.company} - {experience.duration}
+						<p className="text-base text-gray-600 font-bold">
+							<span className="text-primary">{experience.company}</span> - {experience.duration}
 						</p>
 						<p className="mt-2">{experience.description}</p>
 					</Card>
@@ -117,8 +129,10 @@ export default function About() {
 			</Card>
 
 			<div className="flex flex-col justify-between items-center p-4 mt-12">
-				<h2 className="text-2xl font-bold">Contactez moi pour discuter de votre projet ou pour en savoir plus sur mon parcours.</h2>
-				<div className="flex justify-center items-center space-x-4 mt-12">
+				<h2 className="text-2xl text-center font-bold">
+					Contactez moi pour discuter de votre projet ou pour en savoir plus sur mon parcours.
+				</h2>
+				<div className="flex flex-col sm:flex-row justify-center items-center mt-12 gap-4">
 					<Button asChild>
 						<Link href="/contact">
 							<Send className="h-4 w-4 mr-2" /> Contact
@@ -130,12 +144,12 @@ export default function About() {
 							Téléchargez mon CV
 						</Link>
 					</Button>
+					<Button asChild className="w-36">
+						<Link href="https://www.malt.fr/profile/cyrildecostanzi" target="_blank">
+							<Image src="/assets/pngs/malt.png" alt="malt" width={60} height={20} />
+						</Link>
+					</Button>
 				</div>
-				<Button asChild className="mt-4 w-36">
-					<Link href="https://www.malt.fr/profile/cyrildecostanzi" target="_blank">
-						<Image src="/assets/pngs/malt.png" alt="malt" width={60} height={20} />
-					</Link>
-				</Button>
 			</div>
 		</Card>
 	);

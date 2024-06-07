@@ -87,7 +87,7 @@ export function PostsList() {
 								<SelectLabel>Catégories</SelectLabel>
 								<SelectItem value="0">Toutes les catégories</SelectItem>
 								{categories.map((category: any) => (
-									<SelectItem key={category.id} value={category.id.toString()}>
+									<SelectItem key={category.id} value={category.id.toString()} onClick={(e) => e.stopPropagation()}>
 										{category.name}
 									</SelectItem>
 								))}

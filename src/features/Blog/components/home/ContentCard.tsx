@@ -11,7 +11,7 @@ export function ContentCard({ ...post }: Post) {
 
 	return (
 		<Card className="rounded-lg shadow-lg overflow-hidden">
-			<Link href={`/blog/${post.slug}`} scroll={false}>
+			<Link href={`/blog/${post.slug}`}>
 				<AspectRatio ratio={16 / 9} className="bg-muted rounded-t-lg relative">
 					<Image src={formatImageUrl(cover, "cover")} alt={title} fill sizes="100%" className="rounded-t-lg object-cover" priority />
 					<div className="absolute bottom-4 left-4 bg-primary px-2 rounded-xl">

@@ -4,7 +4,7 @@ import "../styles/globals.css";
 
 import { Baloo_2 as FontSans } from "next/font/google";
 
-import { cn } from "@/lib/utils";
+import { cn, formatImageUrl } from "@/lib/utils";
 import { Header } from "@/features/Layout/Header";
 import { Footer } from "@/features/Layout/Footer";
 import { Providers } from "./providers";
@@ -16,8 +16,16 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-	title: "Netzod",
-	description: "Netzod.fr est un blog sur le développement web et mobile, les nouvelles technologies et l'actualité informatique."
+	title: {
+		template: "%s | Netzod.fr",
+		default: "Netzod.fr"
+	},
+	description: "Netzod.fr est un blog sur la tech, le developpement web, la cybersecurité et bien plus encore.",
+	openGraph: {
+		type: "website",
+		locale: "fr_FR",
+		url: "https://netzod.fr"
+	}
 };
 
 export const viewport: Viewport = {
@@ -34,12 +42,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body
-				className={cn(
-					"font-sans min-h-screen w-full mx-auto flex-col relative bg-[url(/assets/pngs/bg8.png)] bg-fixed bg-cover bg-center bg-no-repeat",
-					fontSans.variable
-				)}
-			>
+			<body className={cn("font-sans min-h-screen w-full mx-auto flex-col relative ", fontSans.variable)}>
+				<div className="bg-[url(/assets/pngs/bg8.png)] bg-cover bg-center bg-no-repeat w-screen h-screen fixed top-0 left-0 -z-10"></div>
 				<Providers>
 					<Header />
 					<PageTransitionEffect>{children}</PageTransitionEffect>

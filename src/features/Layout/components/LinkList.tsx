@@ -37,7 +37,6 @@ export function LinkList({ pathname, onLinkClick, isDarkTheme }: LinkListProps) 
 					href={href}
 					className={`transition-colors ${pathname === href ? "text-primary/70" : "text-muted-foreground"} whitespace-nowrap text-base`}
 					onClick={onLinkClick}
-					scroll={false}
 				>
 					{label}
 				</Link>
