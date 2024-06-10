@@ -11,10 +11,29 @@ import ListItem from "@tiptap/extension-list-item";
 import OrderedList from "@tiptap/extension-ordered-list";
 import CodeBlock from "@tiptap/extension-code-block";
 import Code from "@tiptap/extension-code";
+import Link from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import { mergeAttributes } from "@tiptap/core";
 import Placeholder from "@tiptap/extension-placeholder";
+
+const CustomLink = Link.extend({
+	addAttributes() {
+		return {
+			href: {
+				default: null
+			},
+			target: {
+				default: null
+			},
+			rel: {
+				default: null // Set default to null to avoid adding noreferrer nofollow
+			}
+		};
+	},
+	inclusive: false,
+	exitable: true
+});
 
 export const editorConfig = {
 	extensions: [
@@ -53,12 +72,12 @@ export const editorConfig = {
 		}),
 		BulletList.configure({
 			HTMLAttributes: {
-				class: "list-disc my-5 ml-5 sm:ml-10"
+				class: "list-disc my-2 ml-5 sm:ml-10"
 			}
 		}),
 		OrderedList.configure({
 			HTMLAttributes: {
-				class: "list-decimal my-5 ml-5 sm:ml-10 text-lg"
+				class: "list-decimal my-2 ml-5 sm:ml-10 text-lg"
 			}
 		}),
 		ListItem.configure({
@@ -74,6 +93,11 @@ export const editorConfig = {
 		Code.configure({
 			HTMLAttributes: {
 				class: "rounded-lg bg-gray-800 text-white py-1 px-2 mx-1 text-sm"
+			}
+		}),
+		CustomLink.configure({
+			HTMLAttributes: {
+				class: "text-primary underline"
 			}
 		}),
 		Color,

@@ -42,7 +42,7 @@ export function PostList() {
 	}, [getPosts]);
 
 	if (!posts && !error) {
-		return <Skeleton className="w-full h-48" />;
+		return <Skeleton className="w-full h-[500px]" />;
 	}
 
 	if (error) {
@@ -55,7 +55,7 @@ export function PostList() {
 	}
 
 	return (
-		<Card x-chunk="dashboard-05-chunk-3">
+		<Card>
 			{error && (
 				<div className="text-red-500 text-center mt-4">
 					<p>Une erreur s'est produite lors de la récupération des données.</p>
@@ -64,8 +64,8 @@ export function PostList() {
 			)}
 			<CardHeader className="px-10 flex sm:flex-row justify-between">
 				<div className="flex flex-col">
-					<CardTitle className="text-2xl">Vos articles</CardTitle>
-					<CardDescription className="text-base">Vue d'ensemble de vos articles.</CardDescription>
+					<CardTitle className="text-2xl">Vos articles de blog</CardTitle>
+					<CardDescription className="text-base">Vous trouverez ici la liste de tous vos articles.</CardDescription>
 				</div>
 				<div className="flex">
 					<Button

@@ -15,4 +15,6 @@ export type Post = {
 	category: Category;
 	category_id?: number | string;
 	user: User;
+	like_count: number;
+	liked_by: User[];
 };

@@ -30,7 +30,7 @@ const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
 				animate="enter"
 				exit="exit"
 				variants={variants}
-				transition={{ duration: 0.15, ease: "easeIn" }}
+				transition={{ duration: 0.3, ease: "easeIn" }}
 				className="flex flex-col gap-4 px-2 sm:px-8 md:gap-8 md:px-18 pb-28 lg:max-w-[1400px] mx-auto"
 			>
 				<FrozenRouter>{children}</FrozenRouter>

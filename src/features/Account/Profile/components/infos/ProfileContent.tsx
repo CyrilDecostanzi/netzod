@@ -28,7 +28,7 @@ export default function ProfileContent({ user }: PersonalInfosProps) {
 						<div className="flex flex-row gap-4">
 							<div className="min-w-[50px] min-h-[50px] sm:flex">
 								<AspectRatio ratio={1} className="rounded-full overflow-hidden border-primary border-2">
-									<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%"></Image>
+									<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%" priority />
 								</AspectRatio>
 							</div>
 							<div>

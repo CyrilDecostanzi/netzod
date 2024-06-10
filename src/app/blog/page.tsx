@@ -14,8 +14,8 @@ export default function Blog() {
 	return (
 		<>
 			<HeroBanner
-				title="Découvrez les derniers articles de mon blog"
-				description="Des articles sur le développement web, le design, le SEO, le marketing, et bien plus encore."
+				title="Le blog"
+				description="Des articles sur l'actualité dans le monde de la technologie, le développement web et bien d'autres sujets passionnants."
 			/>
 			<div className="flex justify-start">
 				<Button asChild>

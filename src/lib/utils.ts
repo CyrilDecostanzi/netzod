@@ -18,6 +18,11 @@ export function formatDateTime(date: string) {
 
 export function formatImageUrl(url: string | null | undefined, type: "avatar" | "cover" | "post" = "avatar") {
 	if (url) {
+		// check if the url is starting with assets or http
+		if (url.startsWith("assets") || url.startsWith("http")) {
+			return url;
+		}
+
 		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
 	}
 

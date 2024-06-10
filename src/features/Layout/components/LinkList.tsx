@@ -26,7 +26,7 @@ export function LinkList({ pathname, onLinkClick, isDarkTheme }: LinkListProps) 
 	return (
 		<>
 			{mounted && (
-				<Link href="/" className="flex flex-row justify-between" scroll={false} onClick={onLinkClick}>
+				<Link href="/" className="flex flex-row justify-between" onClick={onLinkClick}>
 					<Icons.logo color={isDarkTheme ? "#fff" : "#000"} className="w-8 h-8 animate-spin-slow" />
 					<span className="sr-only">Netzod</span>
 				</Link>

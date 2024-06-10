@@ -31,14 +31,14 @@ export const HomeContent = () => {
 				disablePictureInPicture
 				disableRemotePlayback
 			>
-				<source src="/assets/videos/video4.mp4" type="video/mp4" />
+				<source src="/assets/videos/laptop.mp4" type="video/mp4" />
 				Your browser does not support the video tag.
 			</video>
 			<motion.div
-				className="flex flex-col w-full justify-center items-center mt-52 sm:mt-72 px-5 opacity-40"
-				initial={{ opacity: 0, scale: 0, y: 150 }}
-				animate={{ opacity: 0.4, scale: 1, y: 0 }}
-				transition={{ duration: 0.75, ease: "easeInOut" }}
+				className="flex flex-col w-full justify-center items-center mt-52 sm:mt-72 px-5"
+				initial={{ opacity: 0, scale: 0, y: 300 }}
+				animate={{ opacity: 0.7, scale: 1, y: 0 }}
+				transition={{ duration: 1, ease: "easeInOut" }}
 			>
 				<div className="flex flex-row items-end justify-center">
 					<Image
@@ -51,9 +51,9 @@ export const HomeContent = () => {
 						className="rounded-xl"
 					/>{" "}
 				</div>
-				<p className="text-xl text-center text-primary-foreground mt-8 max-w-[600px]">
-					“L'ordinateur obéit à vos ordres, pas à vos intentions.”
-				</p>
+				<h1 className="text-base sm:text-xl text-center text-primary-foreground mt-8 max-w-[600px]">
+					Actualité tech, développement web, systèmes linux, intelligence artificielle et tutoriels.
+				</h1>
 			</motion.div>
 		</>
 	);

@@ -1,5 +1,5 @@
 // Imports de bibliothèques externes
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -34,6 +34,13 @@ export const RegisterForm = ({ open, setOpen }: RegisterFormProps) => {
 	const { serverError, setServerError, resetError } = useServerError();
 
 	const formOptions = { resolver: zodResolver(RegisterFormSchema) };
+
+	// useEffect(() => {
+	// 	// scroll to top when form is opened
+	// 	if (open) {
+	// 		window.scrollTo(0, 0);
+	// 	}
+	// }, [open]);
 
 	const {
 		register,

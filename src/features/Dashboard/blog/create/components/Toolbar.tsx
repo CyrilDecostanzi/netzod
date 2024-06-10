@@ -7,6 +7,7 @@ import {
 	Heading3,
 	ImageIcon,
 	ItalicIcon,
+	LinkIcon,
 	ListIcon,
 	ListOrdered,
 	StrikethroughIcon
@@ -14,6 +15,7 @@ import {
 import { Editor } from "@tiptap/react";
 import { Input } from "@/components/ui/input";
 import { ImageUploader } from "./ImageUploader";
+import { AddLink } from "./AddLink";
 
 export const Toolbar = ({ editor }: { editor: Editor }) => {
 	return (
@@ -39,12 +41,6 @@ export const Toolbar = ({ editor }: { editor: Editor }) => {
 			<Button onClick={() => editor.chain().focus().toggleItalic().run()} variant={editor.isActive("italic") ? "default" : "border"}>
 				<ItalicIcon />
 			</Button>
-			{/* <Button
-				onClick={() => editor.chain().focus().setImage({ src: "/assets/card_hero4.jpg" }).run()}
-				variant={editor.isActive("image") ? "default" : "border"}
-			>
-				<ImageIcon />
-			</Button> */}
 			<ImageUploader editor={editor} />
 			<Button onClick={() => editor.chain().focus().toggleBulletList().run()} variant={editor.isActive("bulletList") ? "default" : "border"}>
 				<ListIcon />
@@ -58,6 +54,7 @@ export const Toolbar = ({ editor }: { editor: Editor }) => {
 			<Button onClick={() => editor.chain().focus().toggleCode().run()} variant={editor.isActive("code") ? "default" : "border"}>
 				<CodeIcon />
 			</Button>
+			<AddLink editor={editor} />
 			<Input
 				type="color"
 				className="rounded-xl border border-primary/60 p-2 w-10 h-10 cursor-pointer"

@@ -14,7 +14,8 @@ type DownloadData = {
 
 const fetchNpmDownloads = async (packageName: string, period: string): Promise<number> => {
 	try {
-		const response = await fetch(`https://api.npmjs.org/downloads/point/last-${period}/${packageName.toLowerCase()}`);
+		const response = await fetch(`https://api.npmjs.org/downloads/point/last-${period}/${packageName}`);
+
 		const data = await response.json();
 		return data.downloads || 0;
 	} catch (error) {
@@ -43,16 +44,16 @@ const useNpmDownloads = (packageNames: string[], period: string) => {
 };
 
 const chartColors: Record<string, string> = {
-	React: "rgba(54, 162, 235, 0.2)",
-	Vue: "rgba(75, 192, 192, 0.2)",
-	Angular: "rgba(255, 99, 132, 0.2)",
-	Svelte: "rgba(255, 159, 64, 0.2)",
-	Next: "rgba(153, 102, 255, 0.2)"
+	react: "rgba(54, 162, 235, 0.2)",
+	vue: "rgba(75, 192, 192, 0.2)",
+	"@angular/core": "rgba(255, 99, 132, 0.2)",
+	svelte: "rgba(255, 159, 64, 0.2)",
+	next: "rgba(153, 102, 255, 0.2)"
 };
 
 export const TopTable = () => {
-	const packageNames = ["React", "Vue", "Angular", "Svelte", "Next"];
-	const period = "day";
+	const packageNames = ["react", "vue", "@angular/core", "svelte", "next"];
+	const period = "week";
 	const downloads = useNpmDownloads(packageNames, period);
 
 	const sortedDownloads = [...downloads].sort((a, b) => b.downloads - a.downloads);
@@ -61,10 +62,10 @@ export const TopTable = () => {
 		labels: sortedDownloads.map((d) => d.packageName),
 		datasets: [
 			{
-				label: `Téléchargements par jour`,
+				label: `Téléchargements par semaine`,
 				data: sortedDownloads.map((d) => d.downloads),
 				backgroundColor: sortedDownloads.map((d) => chartColors[d.packageName]),
-				borderColor: sortedDownloads.map((d) => chartColors[d.packageName].replace("0.2", "1")),
+				// borderColor: sortedDownloads.map((d) => chartColors[d.packageName].replace("0.2", "1")),
 				borderWidth: 1
 			}
 		]

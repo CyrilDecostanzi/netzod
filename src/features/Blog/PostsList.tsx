@@ -104,7 +104,7 @@ export function PostsList() {
 					</Alert>
 				)}
 
-				{data.data && data.data?.map((card: any, index: any) => <ContentCard key={index} {...card} />)}
+				{data.data && data.data?.map((card: any, index: any) => <ContentCard key={index} post={card} index={index} />)}
 			</div>
 			<div className="grid gap-4 md:grid-cols-2 w-full">
 				<Button

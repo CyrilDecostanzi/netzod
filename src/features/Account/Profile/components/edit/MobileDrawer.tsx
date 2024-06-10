@@ -22,7 +22,7 @@ export function MobileDrawer({ open, setOpen, children, withButton, variant }: M
 					<Edit className="h-4 w-4 cursor-pointer" />
 				)}
 			</DrawerTrigger>
-			<DrawerContent className="max-h-screen">{children}</DrawerContent>
+			<DrawerContent>{children}</DrawerContent>
 		</Drawer>
 	);
 }

@@ -28,9 +28,5 @@ export function AuthContent(type: any) {
 
 	const props = { open, setOpen, haveAccount, setHaveAccount };
 
-	if (isDesktop) {
-		return <DesktopAuth {...props} />;
-	}
-
-	return <MobileAuth {...props} />;
+	return isDesktop ? <DesktopAuth {...props} /> : <MobileAuth {...props} />;
 }

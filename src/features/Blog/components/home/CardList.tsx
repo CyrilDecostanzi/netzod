@@ -25,5 +25,5 @@ export async function CardList() {
 		);
 	}
 
-	return data && data?.map((card: any, index: any) => <ContentCard key={index} {...card} />);
+	return data && data?.map((card: any, index: any) => <ContentCard key={index} post={card} index={index} />);
 }

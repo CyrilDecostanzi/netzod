@@ -4,7 +4,7 @@ import "../styles/globals.css";
 
 import { Baloo_2 as FontSans } from "next/font/google";
 
-import { cn, formatImageUrl } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Header } from "@/features/Layout/Header";
 import { Footer } from "@/features/Layout/Footer";
 import { Providers } from "./providers";
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 		template: "%s | Netzod.fr",
 		default: "Netzod.fr"
 	},
-	description: "Netzod.fr est un blog sur la tech, le developpement web, la cybersecurité et bien plus encore.",
+	description: "Netzod.fr est un blog sur la tech, développement web, systèmes linux, intelligence artificielle, actualités et tutoriels.",
 	openGraph: {
 		type: "website",
 		locale: "fr_FR",
