@@ -1,11 +1,24 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { ContentCard } from "./ContentCard";
 import { getData } from "@/lib/fetch_actions/getData";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CardListSkeleton } from "./CardListSkeleton";
 
-export async function CardList() {
-	const { error, data } = await getData("posts/featured/list");
+export function CardList() {
+	const [data, setData] = useState<any>(null);
+	const [error, setError] = useState<any>(null);
+
+	useEffect(() => {
+		async function fetchData() {
+			const { error, data } = await getData("posts/featured/list");
+			setData(data);
+			setError(error);
+		}
+		fetchData();
+	}, []);
 
 	if (data && data.length === 0) {
 		return (
@@ -25,5 +38,5 @@ export async function CardList() {
 		);
 	}
 
-	return data && data?.map((card: any, index: any) => <ContentCard key={index} post={card} index={index} />);
+	return data ? data?.map((card: any, index: any) => <ContentCard key={index} post={card} index={index} />) : <CardListSkeleton />;
 }

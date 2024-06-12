@@ -8,8 +8,6 @@ import { formatDateTime, formatImageUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ThumbsUp } from "lucide-react";
-import { Likes } from "@/components/Likes";
 
 export function ContentCard({ post, index }: { post: Post; index: number }) {
 	const { category, title, cover, user, published_at, description, like_count } = post;
@@ -23,7 +21,6 @@ export function ContentCard({ post, index }: { post: Post; index: number }) {
 						<div className="absolute bottom-2 left-2 bg-primary px-2 rounded-xl">
 							<p className="text-sm font-medium text-primary-foreground">{category.name}</p>
 						</div>
-						{/* <Likes like_count={like_count} liked_by={post.liked_by} /> */}
 					</AspectRatio>
 
 					<CardContent className="pt-4 pb-2">
