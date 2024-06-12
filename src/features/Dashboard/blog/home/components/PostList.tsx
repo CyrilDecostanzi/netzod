@@ -48,8 +48,8 @@ export function PostList() {
 	if (error) {
 		return (
 			<Alert className="items-center space-x-2 col-span-4">
-				<Terminal className="h-4 w-4 " color="white" />
-				<AlertTitle className="text-white">{error.message}</AlertTitle>
+				<Terminal className="h-4 w-4 " />
+				<AlertTitle>{error.message}</AlertTitle>
 			</Alert>
 		);
 	}
@@ -103,28 +103,30 @@ export function PostList() {
 						))}
 					</TableBody>
 				</Table>
-				<div className="grid gap-4 md:grid-cols-2 w-full mt-12">
-					<Button
-						onClick={() => {
-							if (page > 1) {
-								setParams({ ...params, page: page - 1 });
-							}
-						}}
-						disabled={page === 1}
-					>
-						<ArrowBigLeftDash className="w-6 h-6 mr-2" /> Page précédente
-					</Button>
-					<Button
-						onClick={() => {
-							if (page < lastPage) {
-								setParams({ ...params, page: page + 1 });
-							}
-						}}
-						disabled={page === lastPage || lastPage === 0}
-					>
-						Page suivante <ArrowBigRightDash className="w-6 h-6 ml-2" />
-					</Button>
-				</div>
+				{posts?.length ? (
+					<div className="grid gap-4 md:grid-cols-2 w-full mt-12">
+						<Button
+							onClick={() => {
+								if (page > 1) {
+									setParams({ ...params, page: page - 1 });
+								}
+							}}
+							disabled={page === 1}
+						>
+							<ArrowBigLeftDash className="w-6 h-6 mr-2" /> Page précédente
+						</Button>
+						<Button
+							onClick={() => {
+								if (page < lastPage) {
+									setParams({ ...params, page: page + 1 });
+								}
+							}}
+							disabled={page === lastPage || lastPage === 0}
+						>
+							Page suivante <ArrowBigRightDash className="w-6 h-6 ml-2" />
+						</Button>
+					</div>
+				) : null}
 			</CardContent>
 		</Card>
 	);

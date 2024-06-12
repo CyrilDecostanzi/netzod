@@ -34,14 +34,21 @@ const matchesWildcard = (path: string, pattern: string): boolean => {
  */
 export default async function middleware(req: NextRequest) {
 	const requiresAuth = authRoutes.some((pattern) => matchesWildcard(req.nextUrl.pathname, pattern)); // Vérifie si la route actuelle nécessite une authentification
+	const user = await getJwt(req);
 
 	// Si la route ne nécessite pas d'authentification, passe directement à la suite sans vérifier le JWT
 	if (!requiresAuth) {
+		if (user && user.access_token) {
+			console.log("Rafraichissement du token JWT...");
+			const response = NextResponse.next();
+			response.cookies.set("user", JSON.stringify(user.user));
+			response.cookies.set("token", user.access_token);
+			return response;
+		}
 		return NextResponse.next();
 	}
 
 	// Récupération du JWT de l'utilisateur seulement si l'authentification est nécessaire
-	const user = await getJwt(req);
 
 	// Construit l'URL pour la redirection en cas de besoin
 	const url = new URL("/?type=login&next=" + req.nextUrl.pathname, req.nextUrl.origin);
@@ -53,7 +60,7 @@ export default async function middleware(req: NextRequest) {
 		return response;
 	}
 
-	if (requiresAuth && user && user.access_token) {
+	if (user && user.access_token) {
 		console.log("Rafraichissement du token JWT...");
 		const response = NextResponse.next();
 		response.cookies.set("user", JSON.stringify(user.user));

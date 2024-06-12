@@ -1,19 +1,23 @@
 "use client";
 
 import { ThumbsUp } from "lucide-react";
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { User } from "@/types/auth";
 import { postData } from "@/lib/fetch_actions/postData";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Likes = ({ like_count, liked_by, post_id }: { like_count: number; liked_by: User[]; post_id: number }) => {
 	const [liked, setLiked] = useState(false);
-	const { user } = useContext(AuthContext);
+	const { user } = useAuth();
 	const [count, setCount] = useState(like_count);
 
 	async function handleLike() {
+		if (!user) {
+			toast.error("Vous devez être connecté pour liker un article");
+			return;
+		}
 		const { data, error } = await postData(`posts/${liked ? "unlike" : "like"}/${post_id}`, {});
 		if (error) {
 			console.error(error);

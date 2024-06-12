@@ -10,8 +10,8 @@ export async function CardList() {
 	if (data && data.length === 0) {
 		return (
 			<Alert className="items-center space-x-2 col-span-4">
-				<Terminal className="h-4 w-4 " color="white" />
-				<AlertTitle className="text-white">Aucun article trouvé</AlertTitle>
+				<Terminal className="h-4 w-4 " />
+				<AlertTitle>Aucun article trouvé</AlertTitle>
 			</Alert>
 		);
 	}

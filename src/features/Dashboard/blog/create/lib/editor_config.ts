@@ -24,7 +24,7 @@ const CustomLink = Link.extend({
 				default: null
 			},
 			target: {
-				default: null
+				default: "_blank"
 			},
 			rel: {
 				default: null // Set default to null to avoid adding noreferrer nofollow
@@ -40,7 +40,7 @@ export const editorConfig = {
 		Document,
 		Paragraph.configure({
 			HTMLAttributes: {
-				class: "text-lg leading-8"
+				class: "text-lg leading-8 mb-4"
 			}
 		}),
 		Bold,

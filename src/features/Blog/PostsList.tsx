@@ -55,8 +55,8 @@ export function PostsList() {
 	if (error) {
 		return (
 			<Alert className="items-center space-x-2 col-span-4 bg-red-800">
-				<Terminal className="h-4 w-4 " color="white" />
-				<AlertTitle className="text-white">{error.message}</AlertTitle>
+				<Terminal className="h-4 w-4 " />
+				<AlertTitle>{error.message}</AlertTitle>
 			</Alert>
 		);
 	}
@@ -99,8 +99,8 @@ export function PostsList() {
 			<div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4 w-full">
 				{data.data && data.data.length === 0 && (
 					<Alert className="items-center space-x-2 col-span-4">
-						<Terminal className="h-4 w-4 " color="white" />
-						<AlertTitle className="text-white">Aucun article trouvé</AlertTitle>
+						<Terminal className="h-4 w-4 " />
+						<AlertTitle>Aucun article trouvé</AlertTitle>
 					</Alert>
 				)}
 
