@@ -52,7 +52,7 @@ export const editorConfig = {
 				const level: any = this.options.levels.includes(node.attrs.level) ? node.attrs.level : this.options.levels[0];
 				const classes: { [index: number]: string } = {
 					2: "text-2xl my-5",
-					3: "text-xl my-5"
+					3: "text-lg sm:text-xl  my-5"
 				};
 				return [
 					`h${level}`,

@@ -26,7 +26,7 @@ export const TitleForm = () => {
 			<Input
 				type="text"
 				placeholder="Titre"
-				className="text-xl p-6 md:col-span-4 rounded-xl"
+				className="text-lg p-6 md:col-span-4 rounded-xl"
 				onChange={(e) => setPost({ ...post, title: e.target.value })}
 				value={post?.title || ""}
 			/>
@@ -37,7 +37,7 @@ export const TitleForm = () => {
 				}}
 				value={post?.category_id?.toString()}
 			>
-				<SelectTrigger className="text-xl p-6 md:col-span-3 rounded-xl z-20">
+				<SelectTrigger className="text-lg p-6 md:col-span-3 rounded-xl z-20">
 					<SelectValue placeholder="Catégorie" />
 				</SelectTrigger>
 				<SelectContent>
@@ -53,7 +53,7 @@ export const TitleForm = () => {
 			</Select>
 			<Textarea
 				placeholder="Décrivez votre sujet..."
-				className="text-xl p-6 md:col-span-7 rounded-xl"
+				className="text-lg p-6 md:col-span-7 rounded-xl"
 				rows={5}
 				onChange={(e) => setPost({ ...post, description: e.target.value })}
 				value={post?.description || ""}

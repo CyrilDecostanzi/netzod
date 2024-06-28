@@ -9,7 +9,7 @@ export const Header = () => {
 		<>
 			<HeroBanner
 				title="À propos de moi"
-				description="Je m'appelle Cyril, développeur web freelance basé à Bordeaux. Découvrez mon parcours, mes compétences et mes expériences."
+				description="Je m'appelle Cyril, développeur web freelance basé à Bordeaux. Après plusieurs années passées en CDI, j'ai décidé de me lancer en tant que freelance pour aider les entreprises à réaliser leurs projets."
 			/>
 			<div className="flex justify-center items-center space-x-4 mt-4 flex-wrap">
 				<Button asChild>

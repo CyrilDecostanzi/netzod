@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import "../styles/globals.css";
 
@@ -16,15 +17,22 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL(`https://netzod.fr`),
 	title: {
-		template: "%s | Netzod.fr",
-		default: "Netzod.fr"
+		template: "%s | Netzod",
+		default: "Netzod"
 	},
-	description: "Netzod.fr est un blog sur la tech, développement web, systèmes linux, intelligence artificielle, actualités et tutoriels.",
+	alternates: {
+		canonical: "./"
+	},
+	description: "Netzod est un blog sur la tech, développement web, systèmes linux, intelligence artificielle, actualités et tutoriels.",
 	openGraph: {
 		type: "website",
 		locale: "fr_FR",
-		url: "https://netzod.fr"
+		url: "https://netzod.fr",
+		title: "Netzod",
+		description: "Netzod est un blog sur la tech, développement web, systèmes linux, intelligence artificielle, actualités et tutoriels.",
+		images: [{ url: "http://localhost:3000/assets/pngs/thumb.png", width: 512, height: 512, alt: "Netzod" }]
 	}
 };
 

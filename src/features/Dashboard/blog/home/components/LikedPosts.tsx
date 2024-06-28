@@ -12,7 +12,7 @@ export const LikedPosts = () => {
 	const [error, setError] = useState(null as any);
 	const [params, setParams] = useState<any>({
 		page: 1,
-		limit: 4,
+		limit: 5,
 		lastPage: 1
 	});
 	const { page, lastPage, limit } = params;
@@ -56,7 +56,7 @@ export const LikedPosts = () => {
 				{likedPosts?.length === 0 && <p className="text-center text-gray-500 mt-4">Vous n'avez pas encore aimé d'articles.</p>}
 				{likedPosts && likedPosts.map((post: any) => <ArticleRow key={post.id} {...post} />)}
 				{likedPosts?.length ? (
-					<div className="grid gap-4 md:grid-cols-2 w-full mt-12 mx-auto">
+					<div className="grid gap-4 md:grid-cols-2 w-full mt-12 mx-auto ">
 						<Button
 							onClick={() => {
 								if (page > 1) {

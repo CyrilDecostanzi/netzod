@@ -5,12 +5,17 @@ import { TopTable } from "./components/home/TopTable";
 import { ArticleList } from "./components/home/ArticleList";
 import { Suspense } from "react";
 import { CardListSkeleton } from "./components/home/CardListSkeleton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowBigRightDash } from "lucide-react";
 
 export function Content() {
 	return (
 		<>
 			<div className="grid gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-4 w-full">
-				<CardList />
+				<Suspense fallback={<CardListSkeleton />}>
+					<CardList />
+				</Suspense>
 			</div>
 			<div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
 				<Card className="xl:col-span-2 relative overflow-hidden">
@@ -31,6 +36,11 @@ export function Content() {
 					</CardHeader>
 					<CardContent className="grid gap-8 pb-8">
 						<ArticleList />
+						<Button asChild>
+							<Link href="/blog/posts">
+								Tous les articles <ArrowBigRightDash className="w-6 h-6 ml-2" />
+							</Link>
+						</Button>
 					</CardContent>
 				</Card>
 			</div>

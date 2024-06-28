@@ -36,7 +36,7 @@ export function DropMenu({ user }: DropMenuProps) {
 			<DropdownMenuTrigger asChild>
 				<Button onClick={handleMenuToggle} variant="secondary" size="icon" className="rounded-full">
 					<AspectRatio ratio={1} className="rounded-full overflow-hidden border-primary border-2">
-						<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%" />
+						<Image src={formatImageUrl(user.avatar)} alt="avatar" fill className="object-cover" sizes="100%" priority />
 					</AspectRatio>
 					<span className="sr-only">Ouvrir le menu utilisateur</span>
 				</Button>

@@ -49,7 +49,7 @@ export function Header() {
 					</Button>
 				</SheetTrigger>
 				<SheetContent side="top" className="pl-8 pt-12">
-					<nav className="grid gap-6">
+					<nav className="flex flex-col justify-center items-center gap-12">
 						<LinkList pathname={pathname} onLinkClick={closeSheet} isDarkTheme={isDarkTheme} />
 					</nav>
 				</SheetContent>
