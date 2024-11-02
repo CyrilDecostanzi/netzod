@@ -13,12 +13,6 @@ export const Contact = () => {
 						<Send className="h-4 w-4 mr-2" /> Contact
 					</Link>
 				</Button>
-				<Button asChild>
-					<Link href="/assets/pdf/cv.pdf" target="_blank">
-						<Download className="h-4 w-4 mr-2" />
-						Téléchargez mon CV
-					</Link>
-				</Button>
 				<Button asChild className="w-36">
 					<Link href="https://www.malt.fr/profile/cyrildecostanzi" target="_blank">
 						<Image src="/assets/pngs/malt.png" alt="malt" width={60} height={20} style={{ width: "auto" }} />
